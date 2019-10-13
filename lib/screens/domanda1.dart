@@ -1,4 +1,4 @@
-import 'package:easyhome/components/question_template.dart';
+import 'package:easyhome/components/QuestionTemplate/question_template.dart';
 import 'package:easyhome/screens/domanda2.dart';
 import 'package:flutter/material.dart';
 import 'package:easyhome/services/data.dart';

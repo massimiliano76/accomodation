@@ -1,5 +1,5 @@
 import 'package:easyhome/components/forward_button.dart';
-import 'package:easyhome/components/navbar.dart';
+import 'package:easyhome/components/Navbar/navbar.dart';
 import 'package:easyhome/services/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -12,17 +12,23 @@ class HomePage extends StatelessWidget {
     SizeConfig().init(context);
     return SafeArea(
       child: Scaffold(
-        floatingActionButton: ForwardButton(
-          label: 'Andiamo',
-          onTap: () {
-            Navigator.push(
-              context,
-              PageTransition(
-                type: PageTransitionType.fade,
-                child: Domanda(),
-              ),
-            );
-          },
+        floatingActionButton: Padding(
+          padding: EdgeInsets.only(
+              bottom: SizeConfig.horizontal * 19,
+              right: SizeConfig.horizontal * 4),
+          child: ForwardButton(
+            label: 'Andiamo',
+            reverse: true,
+            onTap: () {
+              Navigator.push(
+                context,
+                PageTransition(
+                  type: PageTransitionType.fade,
+                  child: Domanda(),
+                ),
+              );
+            },
+          ),
         ),
         body: Padding(
           padding: EdgeInsets.only(bottom: SizeConfig.vertical * 25),
@@ -30,7 +36,7 @@ class HomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Navbar(),
+              Navbar(color: Theme.of(context).accentColor),
               Padding(
                 padding: EdgeInsets.only(left: SizeConfig.horizontal * 6),
                 child: Column(
@@ -39,10 +45,11 @@ class HomePage extends StatelessWidget {
                     Text(
                       'Trova\nl’appartamento\nperfetto',
                       style: TextStyle(
-                          color: Color(0xFF707070),
-                          fontSize: SizeConfig.horizontal * 7.5,
-                          fontWeight: FontWeight.w300,
-                          letterSpacing: 0.5,),
+                        color: Color(0xFF707070),
+                        fontSize: SizeConfig.horizontal * 7.5,
+                        fontWeight: FontWeight.w300,
+                        letterSpacing: 0.5,
+                      ),
                     ),
                     SizedBox(
                       height: 20,

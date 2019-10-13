@@ -1,6 +1,6 @@
-import 'package:easyhome/components/choice_card.dart';
+import 'package:easyhome/components/QuestionTemplate/components/choice_card.dart';
 import 'package:easyhome/components/forward_button.dart';
-import 'package:easyhome/components/navbar.dart';
+import 'package:easyhome/components/Navbar/navbar.dart';
 import 'package:easyhome/services/size_config.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +29,6 @@ class _QuestionTemplate extends State<QuestionTemplate> {
     for (int i = 0; i < widget.data.length; i++) {
       selectItems.add(false);
     }
-    print(selectItems);
   }
 
   resetItem() {
@@ -51,14 +50,22 @@ class _QuestionTemplate extends State<QuestionTemplate> {
     SizeConfig().init(context);
     return SafeArea(
       child: Scaffold(
-        floatingActionButton: ForwardButton(
-          label: 'Avanti',
-          onTap: isSelected ? widget.onTap : null,
+        floatingActionButton: Padding(
+          padding: EdgeInsets.only(
+              bottom: SizeConfig.horizontal * 19,
+              right: SizeConfig.horizontal * 4),
+          child: ForwardButton(
+            label: 'Avanti',
+            reverse: true,
+            onTap: isSelected ? widget.onTap : null,
+          ),
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Navbar(),
+            Navbar(
+              color: Theme.of(context).accentColor,
+            ),
             Padding(
               padding: EdgeInsets.only(
                   bottom: SizeConfig.horizontal * 5,
