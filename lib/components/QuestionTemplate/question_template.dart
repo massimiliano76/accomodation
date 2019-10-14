@@ -50,15 +50,10 @@ class _QuestionTemplate extends State<QuestionTemplate> {
     SizeConfig().init(context);
     return SafeArea(
       child: Scaffold(
-        floatingActionButton: Padding(
-          padding: EdgeInsets.only(
-              bottom: SizeConfig.horizontal * 19,
-              right: SizeConfig.horizontal * 4),
-          child: ForwardButton(
-            label: 'Avanti',
-            reverse: true,
-            onTap: isSelected ? widget.onTap : null,
-          ),
+        floatingActionButton: ForwardButton(
+          label: 'Avanti',
+          reverse: true,
+          onTap: isSelected ? widget.onTap : null,
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,20 +65,19 @@ class _QuestionTemplate extends State<QuestionTemplate> {
               padding: EdgeInsets.only(
                   bottom: SizeConfig.horizontal * 5,
                   left: SizeConfig.horizontal * 5,
-                  top: SizeConfig.vertical * 5),
+                  top: SizeConfig.horizontal * 5),
               child: Text(
                 'Dove cerchi appartamento?',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: SizeConfig.horizontal * 5),
               ),
             ),
-            Container(
-              height: SizeConfig.vertical * 70,
-              width: double.infinity,
+            Expanded(
               child: GridView.count(
+                scrollDirection: Axis.vertical,
                 crossAxisCount: 2,
                 mainAxisSpacing: 25,
-                childAspectRatio: 5 / 3,
+                childAspectRatio: 15 / 8,
                 children: widget.data
                     .asMap()
                     .map((index, element) => MapEntry(

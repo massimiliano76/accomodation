@@ -11,7 +11,7 @@ class Navbar extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Padding(
-      padding: EdgeInsets.all(24.0),
+      padding: EdgeInsets.all(SizeConfig.horizontal * 3),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
