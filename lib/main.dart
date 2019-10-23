@@ -1,4 +1,4 @@
-import 'package:easyhome/screens/HomePage/home_page.dart';
+import 'package:easyhome/screens/IntroPage/intro_page.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(EasyHome());
@@ -18,7 +18,7 @@ class EasyHome extends StatelessWidget {
               TextStyle(fontWeight: FontWeight.w300, color: Color(0xFF707070)),
         ),
       ),
-      home: HomePage(),
+      home: IntroPage(),
     );
   }
 }
