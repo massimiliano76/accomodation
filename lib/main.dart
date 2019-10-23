@@ -1,4 +1,4 @@
-import 'package:easyhome/screens/home_page.dart';
+import 'package:easyhome/screens/HomePage/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(EasyHome());
@@ -11,11 +11,11 @@ class EasyHome extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Cocogoose',
         accentColor: Color(0xFFE34652),
-
         textTheme: TextTheme(
           headline: TextStyle(fontWeight: FontWeight.w300),
           title: TextStyle(fontWeight: FontWeight.w300),
-          body1: TextStyle(fontWeight: FontWeight.w300, color: Color(0xFF707070)),
+          body1:
+              TextStyle(fontWeight: FontWeight.w300, color: Color(0xFF707070)),
         ),
       ),
       home: HomePage(),

@@ -4,7 +4,7 @@ import 'package:easyhome/services/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
-import 'domanda.dart';
+import '../domanda.dart';
 
 class HomePage extends StatelessWidget {
   @override

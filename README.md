@@ -1,16 +1,28 @@
-# easyhome
+# Easyhome
 
 A new Flutter application.
 
-## Getting Started
+## Folder Structure
 
-This project is a starting point for a Flutter application.
+### android/
+Android build files
 
-A few resources to get you started if this is your first Flutter project:
+### fonts/
+Fonts files
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### ios/
+iOS build files
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### lib/
+This folder contains shared components used across the app:
+    * components: Global widgets used in different part of the app
+    * screens: All screens of the app
+        * components: All components related to the screen
+    * services: Useful classes that contain services used in the app
+
+### redux/
+This folder contains the redux store to manage app's state:
+    * actions: Actions creators
+    * reducers: All the reducers
+    * store: Initial store's state
+
