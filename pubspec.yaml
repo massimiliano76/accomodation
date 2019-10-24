@@ -26,6 +26,8 @@ dependencies:
   page_transition: ^1.1.5
   font_awesome_flutter: ^8.5.0
   expandable: ^3.0.0+1
+  flutter_redux: ^0.5.3
+  redux: ^3.0.0
 
 
 dev_dependencies:
