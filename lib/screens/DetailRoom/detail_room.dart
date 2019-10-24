@@ -13,82 +13,81 @@ class DetailRoom extends StatelessWidget {
     SizeConfig().init(context);
     return SafeArea(
       child: Scaffold(
-        body: Column(
+        body: Stack(
           children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(top: SizeConfig.horizontal * 20),
+              child: ListView(
+                children: <Widget>[
+                  SizedBox(
+                    height: SizeConfig.horizontal * 2,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: SizeConfig.horizontal * 2,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        ForwardButton(
+                          label: 'Indietro',
+                          reverse: false,
+                        ),
+                        ForwardButton(
+                          label: 'Prenota ora',
+                          reverse: true,
+                          onTap: () {},
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: SizeConfig.horizontal * 6,
+                      bottom: SizeConfig.horizontal * 8,
+                    ),
+                    child: SingleRoom(
+                      isBuying: true,
+                    ),
+                  ),
+                  ExpandableItem(
+                    title: 'Descrizione dell’appartamento',
+                    body:
+                        'But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil.',
+                  ),
+                  ExpandableItem(
+                    title: 'Descrizione della zona',
+                    body:
+                        'But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil.',
+                  ),
+                  ExpandableItem(
+                    title: 'Regole dell\'appartamento',
+                    body:
+                        'But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil.',
+                  ),
+                  ExpandableItem(
+                    title: 'Mezzi di traporto',
+                    body:
+                        'But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil.',
+                  ),
+                  ExpandableItem(
+                    title: 'Prezzo e disponibilità',
+                    body:
+                        'But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil.',
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: SizeConfig.horizontal * 10,
+                    ),
+                    child: Footer(),
+                  ),
+                ],
+              ),
+            ),
             Navbar(
               color: Theme.of(context).accentColor,
+              context: context,
             ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListView(
-                  children: <Widget>[
-                    SizedBox(
-                      height: SizeConfig.horizontal * 2,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: SizeConfig.horizontal * 2,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          ForwardButton(
-                            label: 'Indietro',
-                            reverse: false,
-                          ),
-                          ForwardButton(
-                            label: 'Prenota ora',
-                            reverse: true,
-                            onTap: () {},
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                        top: SizeConfig.horizontal * 6,
-                        bottom: SizeConfig.horizontal * 8,
-                      ),
-                      child: SingleRoom(
-                        isBuying: true,
-                      ),
-                    ),
-                    ExpandableItem(
-                      title: 'Descrizione dell’appartamento',
-                      body:
-                          'But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil.',
-                    ),
-                    ExpandableItem(
-                      title: 'Descrizione della zona',
-                      body:
-                          'But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil.',
-                    ),
-                    ExpandableItem(
-                      title: 'Regole dell\'appartamento',
-                      body:
-                          'But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil.',
-                    ),
-                    ExpandableItem(
-                      title: 'Mezzi di traporto',
-                      body:
-                          'But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil.',
-                    ),
-                    ExpandableItem(
-                      title: 'Prezzo e disponibilità',
-                      body:
-                          'But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil.',
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: SizeConfig.horizontal * 10,
-                      ),
-                      child: Footer(),
-                    ),
-                  ],
-                ),
-              ),
-            )
           ],
         ),
       ),

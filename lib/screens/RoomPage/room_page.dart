@@ -10,12 +10,11 @@ class RoomPage extends StatelessWidget {
     SizeConfig().init(context);
     return SafeArea(
       child: Scaffold(
-        body: Column(
+        body: Stack(
+          fit: StackFit.expand,
           children: <Widget>[
-            Navbar(
-              color: Theme.of(context).accentColor,
-            ),
-            Expanded(
+            Padding(
+              padding: EdgeInsets.only(top: SizeConfig.horizontal * 15),
               child: SingleChildScrollView(
                 child: Padding(
                   padding: EdgeInsets.all(8.0),
@@ -40,6 +39,10 @@ class RoomPage extends StatelessWidget {
                   ),
                 ),
               ),
+            ),
+            Navbar(
+              color: Theme.of(context).accentColor,
+              context: context,
             ),
           ],
         ),

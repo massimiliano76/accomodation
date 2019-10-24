@@ -12,10 +12,6 @@ class HowWorks extends StatelessWidget {
       child: Scaffold(
         body: Stack(
           children: <Widget>[
-            Align(
-              alignment: Alignment.topCenter,
-              child: Navbar(color: Theme.of(context).accentColor),
-            ),
             SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -101,6 +97,13 @@ class HowWorks extends StatelessWidget {
                     ),
                   ),
                 ],
+              ),
+            ),
+            Align(
+              alignment: Alignment.topCenter,
+              child: Navbar(
+                color: Theme.of(context).accentColor,
+                context: context,
               ),
             ),
           ],

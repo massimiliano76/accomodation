@@ -50,48 +50,62 @@ class _QuestionTemplate extends State<QuestionTemplate> {
     SizeConfig().init(context);
     return SafeArea(
       child: Scaffold(
-        floatingActionButton: ForwardButton(
-          label: 'Avanti',
-          reverse: true,
-          onTap: isSelected ? widget.onTap : null,
-        ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        body: Stack(
           children: <Widget>[
-            Navbar(
-              color: Theme.of(context).accentColor,
+            Padding(
+              padding: EdgeInsets.only(top: SizeConfig.horizontal * 15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(
+                        bottom: SizeConfig.horizontal * 5,
+                        left: SizeConfig.horizontal * 5,
+                        top: SizeConfig.horizontal * 5),
+                    child: Text(
+                      'Dove cerchi appartamento?',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: SizeConfig.horizontal * 5),
+                    ),
+                  ),
+                  Expanded(
+                    child: GridView.count(
+                      scrollDirection: Axis.vertical,
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 25,
+                      childAspectRatio: 15 / 8,
+                      children: widget.data
+                          .asMap()
+                          .map((index, element) => MapEntry(
+                              index,
+                              GestureDetector(
+                                onTap: () => hasSelected(index),
+                                child: ChoiceCard(
+                                  label: element,
+                                  isSelected: selectItems[index],
+                                ),
+                              )))
+                          .values
+                          .toList(),
+                    ),
+                  ),
+                ],
+              ),
             ),
             Padding(
-              padding: EdgeInsets.only(
-                  bottom: SizeConfig.horizontal * 5,
-                  left: SizeConfig.horizontal * 5,
-                  top: SizeConfig.horizontal * 5),
-              child: Text(
-                'Dove cerchi appartamento?',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: SizeConfig.horizontal * 5),
+              padding: EdgeInsets.all(16.0),
+              child: Align(
+                alignment: Alignment.bottomRight,
+                child: ForwardButton(
+                  label: 'Avanti',
+                  reverse: true,
+                  onTap: isSelected ? widget.onTap : null,
+                ),
               ),
             ),
-            Expanded(
-              child: GridView.count(
-                scrollDirection: Axis.vertical,
-                crossAxisCount: 2,
-                mainAxisSpacing: 25,
-                childAspectRatio: 15 / 8,
-                children: widget.data
-                    .asMap()
-                    .map((index, element) => MapEntry(
-                        index,
-                        GestureDetector(
-                          onTap: () => hasSelected(index),
-                          child: ChoiceCard(
-                            label: element,
-                            isSelected: selectItems[index],
-                          ),
-                        )))
-                    .values
-                    .toList(),
-              ),
+            Navbar(
+              color: Theme.of(context).accentColor,
+              context: context,
             ),
           ],
         ),
