@@ -29,6 +29,7 @@ class IntroSecondPage extends StatelessWidget {
                           style: TextStyle(
                             color: Color(0xFF707070),
                             fontSize: SizeConfig.horizontal * 7.5,
+                            fontWeight: FontWeight.w300,
                             letterSpacing: 0.5,
                           ),
                         ),
@@ -49,25 +50,21 @@ class IntroSecondPage extends StatelessWidget {
                 ],
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(
-                  bottom: SizeConfig.horizontal * 23,
-                  right: SizeConfig.horizontal * 9),
-              child: Align(
-                alignment: Alignment.bottomRight,
-                child: ForwardButton(
-                  label: 'Avanti',
-                  reverse: true,
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      PageTransition(
-                        type: PageTransitionType.fade,
-                        child: CityQuestion(),
-                      ),
-                    );
-                  },
-                ),
+            Positioned(
+              bottom: SizeConfig.horizontal * 25,
+              right: SizeConfig.horizontal * 12,
+              child: ForwardButton(
+                label: 'Avanti',
+                reverse: true,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    PageTransition(
+                      type: PageTransitionType.fade,
+                      child: CityQuestion(),
+                    ),
+                  );
+                },
               ),
             ),
             Navbar(

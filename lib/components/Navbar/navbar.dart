@@ -10,7 +10,8 @@ class Navbar extends StatefulWidget {
   Navbar({
     this.color,
     @required this.context,
-  });
+    Key key
+  }) : super(key: key);
 
   final Color color;
   final BuildContext context;
@@ -82,7 +83,6 @@ class _NavbarState extends State<Navbar> with TickerProviderStateMixin {
         return Future(() => false);
       },
       child: Stack(
-        overflow: Overflow.clip,
         children: <Widget>[
           Padding(
             padding: EdgeInsets.all(SizeConfig.horizontal * 5),
@@ -109,6 +109,7 @@ class _NavbarState extends State<Navbar> with TickerProviderStateMixin {
           StoreConnector<AppState, bool>(
             converter: (store) => store.state.isLogIn,
             builder: (context, isLogIn) => Container(
+              width: double.infinity,
               height: containerAnimation.value,
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -122,7 +123,7 @@ class _NavbarState extends State<Navbar> with TickerProviderStateMixin {
                   )
                 ],
               ),
-              child: isLogIn ? LoginContainer() : NotLoginContainer(),
+              child: isLogIn ? LoginContainer() : NotLoginContainer(animationValue: containerAnimation.value,),
             ),
           ),
           GestureDetector(

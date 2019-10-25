@@ -6,47 +6,17 @@ final textStyle = TextStyle(
 );
 
 class NotLoginContainer extends StatelessWidget {
+
+  NotLoginContainer({this.animationValue});
+
+  final double animationValue;
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return Stack(
+    return Column(
       children: <Widget>[
-        Padding(
-          padding: EdgeInsets.only(
-              top: SizeConfig.horizontal * 13,
-              right: SizeConfig.horizontal * 5,
-              left: SizeConfig.horizontal * 5),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: <Widget>[
-                    Text('Come Funziona', style: textStyle),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: <Widget>[
-                        Text('Registrati', style: textStyle),
-                        Padding(
-                          padding: EdgeInsets.only(top: 8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Icon(Icons.people),
-                              Text('Accedi', style: textStyle),
-                            ],
-                          ),
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
+
       ],
     );
   }

@@ -59,9 +59,10 @@ class _QuestionTemplate extends State<QuestionTemplate> {
                 children: <Widget>[
                   Padding(
                     padding: EdgeInsets.only(
-                        bottom: SizeConfig.horizontal * 5,
-                        left: SizeConfig.horizontal * 5,
-                        top: SizeConfig.horizontal * 5),
+                      bottom: SizeConfig.horizontal * 5,
+                      left: SizeConfig.horizontal * 5,
+                      top: SizeConfig.horizontal * 5,
+                    ),
                     child: Text(
                       'Dove cerchi appartamento?',
                       textAlign: TextAlign.center,
