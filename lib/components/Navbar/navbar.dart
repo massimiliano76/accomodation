@@ -7,11 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
 class Navbar extends StatefulWidget {
-  Navbar({
-    this.color,
-    @required this.context,
-    Key key
-  }) : super(key: key);
+  Navbar({this.color, @required this.context, Key key}) : super(key: key);
 
   final Color color;
   final BuildContext context;
@@ -123,7 +119,11 @@ class _NavbarState extends State<Navbar> with TickerProviderStateMixin {
                   )
                 ],
               ),
-              child: isLogIn ? LoginContainer() : NotLoginContainer(animationValue: containerAnimation.value,),
+              child: isLogIn
+                  ? LoginContainer()
+                  : NotLoginContainer(
+                      animationValue: containerAnimation.value,
+                    ),
             ),
           ),
           GestureDetector(

@@ -18,16 +18,28 @@ class NotLoginContainer extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Flexible(
-          child: IconButton(icon: Icon(Icons.add), onPressed: () {
-            Navigator.push(
-              context,
-              PageTransition(
-                type: PageTransitionType.fade,
-                child: LoginPage(),
-              ),
-            );
-          },),
+        Expanded(
+          child: ListView(
+            children: <Widget>[
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  IconButton(
+                    icon: Icon(Icons.add),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        PageTransition(
+                          type: PageTransitionType.fade,
+                          child: LoginPage(),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ],
     );
