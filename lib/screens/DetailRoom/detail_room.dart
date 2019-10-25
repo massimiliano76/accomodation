@@ -8,6 +8,11 @@ import '../../services/size_config.dart';
 import 'package:expandable/expandable.dart';
 
 class DetailRoom extends StatelessWidget {
+
+  DetailRoom({this.heroTag,});
+
+  final String heroTag;
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -47,6 +52,7 @@ class DetailRoom extends StatelessWidget {
                       bottom: SizeConfig.horizontal * 8,
                     ),
                     child: SingleRoom(
+                      heroTag: heroTag,
                       isBuying: true,
                     ),
                   ),
