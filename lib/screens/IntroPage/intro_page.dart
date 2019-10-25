@@ -15,7 +15,7 @@ class IntroPage extends StatelessWidget {
         body: Stack(
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(top: SizeConfig.horizontal * 75),
+              padding: EdgeInsets.only(top: SizeConfig.vertical * 35),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -52,7 +52,7 @@ class IntroPage extends StatelessWidget {
               ),
             ),
             Positioned(
-              bottom: SizeConfig.horizontal * 25,
+              bottom: SizeConfig.vertical * 15,
               right: SizeConfig.horizontal * 12,
               child: ForwardButton(
                 label: 'Andiamo',

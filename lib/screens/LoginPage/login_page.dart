@@ -37,7 +37,7 @@ class LoginPage extends StatelessWidget {
             Container(
               padding:
                   EdgeInsets.symmetric(horizontal: SizeConfig.horizontal * 10),
-              margin: EdgeInsets.only(top: SizeConfig.horizontal * 40),
+              margin: EdgeInsets.only(top: SizeConfig.vertical * 15),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[

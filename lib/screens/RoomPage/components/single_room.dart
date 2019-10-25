@@ -14,18 +14,22 @@ class SingleRoom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     SizeConfig().init(context);
     return StatefulBuilder(
       builder: (BuildContext context, StateSetter setState) => GestureDetector(
         onTap: () {
-          Navigator.push(
-            context,
-            PageTransition(
-              type: PageTransitionType.fade,
-              child: DetailRoom(heroTag: heroTag,),
-            ),
-          );
+          !isBuying
+              ? Navigator.push(
+                  context,
+                  PageTransition(
+                    type: PageTransitionType.fade,
+                    child: DetailRoom(
+                      heroTag: heroTag,
+                    ),
+                  ),
+                )
+              // ignore: unnecessary_statements
+              : null;
         },
         child: Stack(
           overflow: Overflow.visible,
@@ -73,71 +77,77 @@ class SingleRoom extends StatelessWidget {
                               vertical: SizeConfig.vertical * 2,
                               horizontal: SizeConfig.horizontal * 2,
                             ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 10.0),
-                                  child: Row(
-                                    mainAxisAlignment: isBuying
-                                        ? MainAxisAlignment.spaceBetween
-                                        : MainAxisAlignment.start,
-                                    children: <Widget>[
-                                      Material(
-                                        color: Colors.transparent,
-                                        child: Text(
-                                          'Calle Perdomo 20',
-                                          style: TextStyle(
-                                            fontSize: SizeConfig.horizontal * 5,
+                            child: SingleChildScrollView(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(vertical: 10.0),
+                                    child: Row(
+                                      mainAxisAlignment: isBuying
+                                          ? MainAxisAlignment.spaceBetween
+                                          : MainAxisAlignment.start,
+                                      children: <Widget>[
+                                        Material(
+                                          color: Colors.transparent,
+                                          child: Text(
+                                            'Calle Perdomo 20',
+                                            style: TextStyle(
+                                              fontSize:
+                                                  SizeConfig.horizontal * 5,
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      isBuying
-                                          ? Material(
-                                            color: Colors.transparent,
-                                            child: Text(
-                                                '450€',
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: SizeConfig.horizontal * 5,
-                                                ),
-                                              ),
-                                            )
-                                          : SizedBox.shrink(),
-                                    ],
+                                        isBuying
+                                            ? Material(
+                                                color: Colors.transparent,
+                                                child: Text(
+                                                  '450€',
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize:
+                                                        SizeConfig.horizontal *
+                                                            5,
+                                                  ),
+                                                ))
+                                            : SizedBox.shrink(),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                Material(
-                                  color: Colors.transparent,
-                                  child: Text(
-                                    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.',
-                                    style: TextStyle(
-                                        fontSize: SizeConfig.horizontal * 3.1,
-                                        color: Color(0xFFAAAAAA)),
+                                  Material(
+                                    color: Colors.transparent,
+                                    child: Text(
+                                      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.',
+                                      style: TextStyle(
+                                          fontSize: SizeConfig.horizontal * 3.1,
+                                          color: Color(0xFFAAAAAA)),
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding:
-                                      EdgeInsets.only(top: SizeConfig.vertical * 2),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: <Widget>[
-                                      isBuying
-                                          ? SizedBox.shrink()
-                                          : Material(
-                                        color: Colors.transparent,
-                                        child: Text(
-                                          '450€',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: SizeConfig.horizontal * 5,
-                                          ),
-                                        ),
-                                      )
-                                    ],
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        top: SizeConfig.vertical * 2),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: <Widget>[
+                                        isBuying
+                                            ? SizedBox.shrink()
+                                            : Material(
+                                                color: Colors.transparent,
+                                                child: Text(
+                                                  '450€',
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize:
+                                                        SizeConfig.horizontal *
+                                                            5,
+                                                  ),
+                                                ))
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -194,8 +204,7 @@ class SingleRoom extends StatelessWidget {
                                               fontWeight: FontWeight.w300,
                                               color: Color(0xFF707070),
                                               fontSize:
-                                              SizeConfig.horizontal *
-                                                  4.5,
+                                                  SizeConfig.horizontal * 4.5,
                                             ),
                                           ),
                                           SizedBox(height: 15),
@@ -206,7 +215,7 @@ class SingleRoom extends StatelessWidget {
                                               color: Color(0xFFAAAAAA),
                                               fontWeight: FontWeight.w300,
                                               fontSize:
-                                              SizeConfig.horizontal * 3,
+                                                  SizeConfig.horizontal * 3,
                                             ),
                                           ),
                                           SizedBox(height: 15),
@@ -234,8 +243,7 @@ class SingleRoom extends StatelessWidget {
                             blurRadius: 5.0,
                             offset: Offset(2, 5),
                           )
-                        ]
-                    ),
+                        ]),
                     child: CircleAvatar(
                       radius: 30,
                       backgroundColor: Colors.white,

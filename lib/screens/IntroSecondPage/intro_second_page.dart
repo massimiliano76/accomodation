@@ -14,7 +14,7 @@ class IntroSecondPage extends StatelessWidget {
         body: Stack(
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(top: SizeConfig.horizontal * 100),
+              padding: EdgeInsets.only(top: SizeConfig.vertical * 50),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -51,7 +51,7 @@ class IntroSecondPage extends StatelessWidget {
               ),
             ),
             Positioned(
-              bottom: SizeConfig.horizontal * 25,
+              bottom: SizeConfig.vertical * 15,
               right: SizeConfig.horizontal * 12,
               child: ForwardButton(
                 label: 'Avanti',
