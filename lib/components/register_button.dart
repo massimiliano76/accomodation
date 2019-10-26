@@ -2,11 +2,7 @@ import 'package:easyhome/services/size_config.dart';
 import 'package:flutter/material.dart';
 
 class RegisterButton extends StatelessWidget {
-  const RegisterButton({
-    Key key,
-    this.onTap,
-    this.label
-  }) : super(key: key);
+  const RegisterButton({Key key, this.onTap, this.label}) : super(key: key);
 
   final Function onTap;
   final String label;
@@ -24,10 +20,9 @@ class RegisterButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(30.0),
         onTap: onTap,
         child: Container(
-          padding: EdgeInsets.all(20.0),
+          padding: EdgeInsets.all(SizeConfig.horizontal * 5),
           width: SizeConfig.horizontal * 45,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30.0)),
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(30.0)),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[

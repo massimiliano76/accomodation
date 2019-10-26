@@ -9,8 +9,9 @@ class Footer extends StatelessWidget {
     SizeConfig().init(context);
     return Container(
         margin: EdgeInsets.only(
-            top: SizeConfig.horizontal * 13,
-            bottom: SizeConfig.horizontal * 10),
+          top: SizeConfig.horizontal * 13,
+          bottom: SizeConfig.horizontal * 10,
+        ),
         child: Column(
           children: <Widget>[
             Row(
@@ -26,15 +27,15 @@ class Footer extends StatelessWidget {
                     children: <Widget>[
                       Icon(
                         FontAwesomeIcons.facebook,
-                        size: 30,
+                        size: SizeConfig.horizontal * 6,
                       ),
                       Icon(
                         FontAwesomeIcons.instagram,
-                        size: 30,
+                        size: SizeConfig.horizontal * 6,
                       ),
                       Icon(
                         Icons.email,
-                        size: 30,
+                        size: SizeConfig.horizontal * 6,
                       ),
                     ],
                   ),
@@ -49,13 +50,19 @@ class Footer extends StatelessWidget {
                   Expanded(
                     child: Text(
                       'Copyright 2018',
-                      style: TextStyle(color: Color(0xFFAAAAAA)),
+                      style: TextStyle(
+                        color: Color(0xFFAAAAAA),
+                        fontSize: SizeConfig.horizontal * 3,
+                      ),
                     ),
                   ),
                   Expanded(
                     child: Text(
                       'Via Lorem Ipsum,\nPalermo, PA 90136',
-                      style: TextStyle(color: Color(0xFFAAAAAA)),
+                      style: TextStyle(
+                        color: Color(0xFFAAAAAA),
+                        fontSize: SizeConfig.horizontal * 3,
+                      ),
                     ),
                   )
                 ],
@@ -68,13 +75,19 @@ class Footer extends StatelessWidget {
                   Expanded(
                     child: Text(
                       'Private Policy',
-                      style: TextStyle(color: Color(0xFFAAAAAA)),
+                      style: TextStyle(
+                        color: Color(0xFFAAAAAA),
+                        fontSize: SizeConfig.horizontal * 3,
+                      ),
                     ),
                   ),
                   Expanded(
                     child: Text(
                       'easyhome@client.com',
-                      style: TextStyle(color: Color(0xFFAAAAAA)),
+                      style: TextStyle(
+                        color: Color(0xFFAAAAAA),
+                        fontSize: SizeConfig.horizontal * 3,
+                      ),
                     ),
                   ),
                 ],

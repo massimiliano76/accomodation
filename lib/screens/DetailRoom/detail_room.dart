@@ -1,15 +1,20 @@
 import 'package:easyhome/components/Navbar/navbar.dart';
 import 'package:easyhome/components/footer.dart';
+import 'package:easyhome/redux/store/store.dart';
+import 'package:easyhome/screens/CompleteData/complete_data.dart';
 import 'package:easyhome/screens/RoomPage/components/single_room.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:page_transition/page_transition.dart';
 
 import '../../components/forward_button.dart';
 import '../../services/size_config.dart';
 import 'package:expandable/expandable.dart';
 
 class DetailRoom extends StatelessWidget {
-
-  DetailRoom({this.heroTag,});
+  DetailRoom({
+    this.heroTag,
+  });
 
   final String heroTag;
 
@@ -21,12 +26,9 @@ class DetailRoom extends StatelessWidget {
         body: Stack(
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(top: SizeConfig.horizontal * 20),
+              padding: EdgeInsets.only(top: SizeConfig.horizontal * 22),
               child: ListView(
                 children: <Widget>[
-                  SizedBox(
-                    height: SizeConfig.horizontal * 2,
-                  ),
                   Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: SizeConfig.horizontal * 2,
@@ -37,11 +39,25 @@ class DetailRoom extends StatelessWidget {
                         ForwardButton(
                           label: 'Indietro',
                           reverse: false,
+                          onTap: () => Navigator.pop(context),
                         ),
-                        ForwardButton(
-                          label: 'Prenota ora',
-                          reverse: true,
-                          onTap: () {},
+                        StoreConnector<AppState, bool>(
+                          converter: (store) => store.state.isLogIn,
+                          builder: (context, islogIn) => ForwardButton(
+                            label: 'Prenota ora',
+                            reverse: true,
+                            onTap: () {
+                              !islogIn
+                                  ? Navigator.push(
+                                      context,
+                                      PageTransition(
+                                        type: PageTransitionType.fade,
+                                        child: CompleteData(),
+                                      ),
+                                    )
+                                  : null;
+                            },
+                          ),
                         ),
                       ],
                     ),
@@ -126,6 +142,7 @@ class ExpandableItem extends StatelessWidget {
           textAlign: TextAlign.left,
           style: TextStyle(
             color: Color(0xFFAAAAAA),
+            fontSize: SizeConfig.horizontal * 3.5,
           ),
         ),
       ),
