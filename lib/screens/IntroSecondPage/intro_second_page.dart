@@ -51,7 +51,7 @@ class IntroSecondPage extends StatelessWidget {
               ),
             ),
             Positioned(
-              bottom: SizeConfig.vertical * 15,
+              bottom: SizeConfig.vertical * 10,
               right: SizeConfig.horizontal * 12,
               child: ForwardButton(
                 label: 'Avanti',

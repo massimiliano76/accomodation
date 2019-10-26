@@ -2,7 +2,8 @@ import 'package:easyhome/services/size_config.dart';
 import 'package:flutter/material.dart';
 
 class InputForm extends StatelessWidget {
-  InputForm({this.placeholder, this.textInputType, this.isObscured, this.label});
+  InputForm(
+      {this.placeholder, this.textInputType, this.isObscured, this.label});
 
   final String placeholder;
   final String label;
@@ -13,21 +14,23 @@ class InputForm extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
+      margin: EdgeInsets.symmetric(vertical: SizeConfig.horizontal * 2),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          label == null ? SizedBox.shrink() : Padding(
-            padding: EdgeInsets.only(left: 8.0),
-            child: Text(
-              label,
-              style: TextStyle(
-                color: Color(0xFFAAAAAA),
-                fontWeight: FontWeight.bold,
-                fontSize: SizeConfig.horizontal * 3.5,
-              ),
-            ),
-          ),
+          label == null
+              ? SizedBox.shrink()
+              : Padding(
+                  padding: EdgeInsets.only(left: 8.0),
+                  child: Text(
+                    label,
+                    style: TextStyle(
+                      color: Color(0xFFAAAAAA),
+                      fontWeight: FontWeight.bold,
+                      fontSize: SizeConfig.horizontal * 3.5,
+                    ),
+                  ),
+                ),
           SizedBox(
             height: 10,
           ),
@@ -49,7 +52,10 @@ class InputForm extends StatelessWidget {
                 fontWeight: FontWeight.w300,
               ),
               decoration: InputDecoration(
-                contentPadding: EdgeInsets.only(left: 15, bottom: 40),
+                contentPadding: EdgeInsets.only(
+                  left: 15,
+                  bottom: SizeConfig.horizontal * 10,
+                ),
                 hintStyle: TextStyle(
                   color: Color(0xAA707070),
                   fontWeight: FontWeight.w300,

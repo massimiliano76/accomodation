@@ -74,6 +74,7 @@ class _NavbarState extends State<Navbar> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return WillPopScope(
+      key: UniqueKey(),
       onWillPop: () async {
         isExpanded ? _controller.reverse() : Navigator.pop(context);
         return Future(() => false);

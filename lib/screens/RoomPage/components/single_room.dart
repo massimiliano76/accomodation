@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easyhome/screens/DetailRoom/detail_room.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -60,14 +61,21 @@ class SingleRoom extends StatelessWidget {
                       children: <Widget>[
                         Expanded(
                           flex: 1,
-                          child: Container(
-                            width: double.infinity,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(11.0),
-                              child: Image.network(
+                          child: CachedNetworkImage(
+                            imageUrl:
                                 'http://d2e5ushqwiltxm.cloudfront.net/wp-content/uploads/sites/12/2016/02/09120423/Pullman-Executive-Room-King-Bed-1.jpg',
-                                fit: BoxFit.cover,
+                            imageBuilder: (context, imageProvider) => Container(
+                              width: double.infinity,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(11.0),
+                                child: Image(
+                                  image: imageProvider,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
+                            ),
+                            placeholder: (context, url) => Center(
+                              child: CircularProgressIndicator(),
                             ),
                           ),
                         ),
@@ -245,7 +253,7 @@ class SingleRoom extends StatelessWidget {
                           )
                         ]),
                     child: CircleAvatar(
-                      radius: 30,
+                      radius: SizeConfig.horizontal * 7,
                       backgroundColor: Colors.white,
                       child: Icon(
                         isSelected ? Icons.favorite : Icons.favorite_border,
