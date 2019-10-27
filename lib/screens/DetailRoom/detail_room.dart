@@ -44,11 +44,11 @@ class DetailRoom extends StatelessWidget {
                         ),
                         StoreConnector<AppState, bool>(
                           converter: (store) => store.state.isLogIn,
-                          builder: (context, islogIn) => ForwardButton(
+                          builder: (context, isLogIn) => ForwardButton(
                             label: 'Prenota ora',
                             reverse: true,
                             onTap: () {
-                              islogIn
+                              isLogIn
                                   ? Navigator.push(
                                       context,
                                       PageTransition(

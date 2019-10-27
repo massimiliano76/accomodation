@@ -1,14 +1,12 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easyhome/components/Navbar/navbar.dart';
 import 'package:easyhome/components/footer.dart';
 import 'package:easyhome/components/forward_button.dart';
 import 'package:easyhome/components/input_form.dart';
 import 'package:easyhome/components/payments_card.dart';
+import 'package:easyhome/screens/LastLook/last_look.dart';
 import 'package:easyhome/services/size_config.dart';
 import 'package:flutter/material.dart';
-
-import 'components/credit_card.dart';
-import 'components/paypal_button.dart';
+import 'package:page_transition/page_transition.dart';
 
 class CompleteData extends StatelessWidget {
   @override
@@ -16,197 +14,112 @@ class CompleteData extends StatelessWidget {
     SizeConfig().init(context);
     return SafeArea(
       child: Scaffold(
-        body: Stack(
-          children: <Widget>[
-            Positioned(
-              top: SizeConfig.horizontal * 22,
-              left: 0,
-              right: 0,
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: SizeConfig.horizontal * 2,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    ForwardButton(
-                      label: 'Indietro',
-                      reverse: false,
-                      onTap: () => Navigator.pop(context),
-                    ),
-                    ForwardButton(
-                      label: 'Avanti',
-                      reverse: true,
-                      onTap: () {},
-                    ),
-                  ],
-                ),
+          body: Stack(
+        children: <Widget>[
+          Positioned(
+            top: SizeConfig.horizontal * 22,
+            left: 0,
+            right: 0,
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: SizeConfig.horizontal * 2,
               ),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: SizeConfig.horizontal * 32),
-              child: ListView(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  PaymentsCard(
-                    title: 'Pagamento',
+                  ForwardButton(
+                    label: 'Indietro',
+                    reverse: false,
+                    onTap: () => Navigator.pop(context),
                   ),
-                  SizedBox(
-                    height: SizeConfig.horizontal * 15,
+                  ForwardButton(
+                    label: 'Avanti',
+                    reverse: true,
+                    onTap: () {
+                      Navigator.push(context, PageTransition(child: LastLook(), type: PageTransitionType.fade));
+                    },
                   ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: SizeConfig.horizontal * 5),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          '1. Dati di fatturazione',
-                          style: TextStyle(
-                            color: Color(0xFF707070),
-                            fontWeight: FontWeight.bold,
-                            fontSize: SizeConfig.horizontal * 4.5,
-                          ),
-                        ),
-                        SizedBox(
-                          height: SizeConfig.horizontal * 8,
-                        ),
-                        InputForm(
-                          label: 'Nome',
-                          textInputType: TextInputType.text,
-                        ),
-                        InputForm(
-                          label: 'Cognome',
-                          textInputType: TextInputType.text,
-                        ),
-                        InputForm(
-                          label: 'Indirizzo',
-                          textInputType: TextInputType.text,
-                        ),
-                        InputForm(
-                          label: 'Città',
-                          textInputType: TextInputType.text,
-                        ),
-                        InputForm(
-                          label: 'Provincia',
-                          textInputType: TextInputType.text,
-                        ),
-                        InputForm(
-                          label: 'CAP',
-                          textInputType: TextInputType.number,
-                        ),
-                        InputForm(
-                          label: 'Paese',
-                          textInputType: TextInputType.text,
-                        ),
-                        InputForm(
-                          label: 'Cellulare',
-                          textInputType: TextInputType.phone,
-                        ),
-                        SizedBox(
-                          height: SizeConfig.horizontal * 15,
-                        ),
-                        Text(
-                          '1. Dati di fatturazione',
-                          style: TextStyle(
-                            color: Color(0xFF707070),
-                            fontWeight: FontWeight.bold,
-                            fontSize: SizeConfig.horizontal * 4.5,
-                          ),
-                        ),
-                        SizedBox(
-                          height: SizeConfig.horizontal * 8,
-                        ),
-                        InputForm(
-                          label: 'Numero di carta',
-                          textInputType: TextInputType.number,
-                        ),
-                        InputForm(
-                          label: 'Intestatario',
-                          textInputType: TextInputType.text,
-                        ),
-                        InputForm(
-                          label: 'Data di scadenza',
-                          textInputType: TextInputType.datetime,
-                        ),
-                        InputForm(
-                          label: 'CVV',
-                          textInputType: TextInputType.number,
-                        ),
-                        Container(
-                          margin: EdgeInsets.symmetric(
-                              vertical: SizeConfig.horizontal * 10),
-                          child: Column(
-                            children: <Widget>[
-                              Text(
-                                'Oppure, paga con: ',
-                                style: TextStyle(
-                                    color: Color(0xFF999999),
-                                    fontSize: SizeConfig.horizontal * 3.2),
-                              ),
-                              SizedBox(
-                                height: SizeConfig.horizontal * 7,
-                              ),
-                              PaypalButton(),
-                              SizedBox(
-                                height: SizeConfig.horizontal * 2,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  CreditCard(
-                                    cardUrl:
-                                        'https://blockchainwelt.de/wp-content/uploads/2018/12/visa-logo.png',
-                                  ),
-                                  CreditCard(
-                                    cardUrl:
-                                        'https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fblogs-images.forbes.com%2Fsteveolenski%2Ffiles%2F2016%2F07%2FMastercard_new_logo-1200x865.jpg',
-                                  ),
-                                  CreditCard(
-                                    cardUrl:
-                                        'https://images.fastcompany.net/image/upload/w_596,c_limit,q_auto:best,f_auto/wp-cms/uploads/2018/04/4-you-might-not-notice-amex-new-brand.jpg',
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: SizeConfig.horizontal * 3,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Text(
-                                    'Con tecnologia  ',
-                                    style: TextStyle(),
-                                  ),
-                                  Container(
-                                    height: SizeConfig.horizontal * 3,
-                                    child: CachedNetworkImage(
-                                      imageUrl:
-                                          'https://nerdenterprises.com/wp-content/uploads/2018/12/PayPal-Logo.png',
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: SizeConfig.horizontal * 5),
-                          child: Footer(),
-                        ),
-                      ],
-                    ),
-                  )
                 ],
               ),
             ),
-            Navbar(
-              context: context,
-              color: Theme.of(context).accentColor,
+          ),
+          Container(
+            margin: EdgeInsets.only(top: SizeConfig.horizontal * 32),
+            child: ListView(
+              children: <Widget>[
+                PaymentsCard(
+                  title: "Completa i tuoi dati",
+                ),
+                Padding(
+                  padding:
+                  EdgeInsets.symmetric(horizontal: SizeConfig.horizontal * 5),
+                  child: Column(
+                    children: <Widget>[
+                      InputForm(
+                        label: "N. Carta di Identità",
+                      ),
+                      InputForm(
+                        label: "Codice Fiscale",
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: <Widget>[
+                          Expanded(
+                            flex: 2,
+                            child: InputForm(label: "Foto carta d'Identità"),
+                          ),
+                          SizedBox(
+                            width: SizeConfig.horizontal * 4,
+                          ),
+                          Expanded(
+                            child: GestureDetector(
+                              child: Container(
+                                height: SizeConfig.horizontal * 15,
+                                margin: EdgeInsets.only(bottom: 10),
+                                child: Icon(
+                                  Icons.file_upload,
+                                  color: Colors.white,
+                                  size: SizeConfig.horizontal * 6.5,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).accentColor,
+                                  borderRadius: BorderRadius.circular(40),
+                                  gradient: LinearGradient(
+                                    // Where the linear gradient begins and ends
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                    // Add one stop for each color. Stops should increase from 0 to 1
+                                    stops: [0.3, 1],
+                                    colors: [Color(0xFFFA7A84), Color(0xFFE34652)],
+                                  ),
+                                ),
+                              ),
+                              onTap: () {
+                                Navigator.push(context, PageTransition(child: LastLook(), type: PageTransitionType.fade));
+                              },
+                            ),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: SizeConfig.horizontal * 4,
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: SizeConfig.horizontal * 5),
+                  child: Footer(),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
+          Navbar(
+            context: context,
+            color: Theme.of(context).accentColor,
+          ),
+        ],
+      )),
     );
   }
 }
