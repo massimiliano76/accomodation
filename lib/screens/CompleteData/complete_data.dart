@@ -36,7 +36,11 @@ class CompleteData extends StatelessWidget {
                     label: 'Avanti',
                     reverse: true,
                     onTap: () {
-                      Navigator.push(context, PageTransition(child: LastLook(), type: PageTransitionType.fade));
+                      Navigator.push(
+                          context,
+                          PageTransition(
+                              child: LastLook(),
+                              type: PageTransitionType.fade));
                     },
                   ),
                 ],
@@ -51,8 +55,8 @@ class CompleteData extends StatelessWidget {
                   title: "Completa i tuoi dati",
                 ),
                 Padding(
-                  padding:
-                  EdgeInsets.symmetric(horizontal: SizeConfig.horizontal * 5),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: SizeConfig.horizontal * 5),
                   child: Column(
                     children: <Widget>[
                       InputForm(
@@ -89,13 +93,22 @@ class CompleteData extends StatelessWidget {
                                     begin: Alignment.topCenter,
                                     end: Alignment.bottomCenter,
                                     // Add one stop for each color. Stops should increase from 0 to 1
-                                    stops: [0.3, 1],
-                                    colors: [Color(0xFFFA7A84), Color(0xFFE34652)],
+                                    stops: [0.1, 1],
+                                    colors: [
+                                      Color(0xFFFA7A84),
+                                      Color(0xFFE34652)
+                                    ],
                                   ),
                                 ),
                               ),
                               onTap: () {
-                                Navigator.push(context, PageTransition(child: LastLook(), type: PageTransitionType.fade));
+                                Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    child: LastLook(),
+                                    type: PageTransitionType.fade,
+                                  ),
+                                );
                               },
                             ),
                           )
@@ -108,7 +121,8 @@ class CompleteData extends StatelessWidget {
                   height: SizeConfig.horizontal * 4,
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: SizeConfig.horizontal * 5),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: SizeConfig.horizontal * 10),
                   child: Footer(),
                 ),
               ],

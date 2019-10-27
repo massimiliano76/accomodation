@@ -7,7 +7,7 @@ import 'package:redux/redux.dart';
 import 'package:easyhome/redux/reducers/reducers.dart';
 
 void main() {
-//  WidgetsFlutterBinding.ensureInitialized()
+  WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
     [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
   );
@@ -30,6 +30,7 @@ class EasyHome extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           fontFamily: 'Cocogoose',
+          canvasColor: Colors.white,
           accentColor: Color(0xFFE34652),
 //          accentColor: Colors.blue.shade600,
           textTheme: TextTheme(

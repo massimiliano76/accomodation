@@ -143,7 +143,7 @@ class ExpandableItem extends StatelessWidget {
           textAlign: TextAlign.left,
           style: TextStyle(
             color: Color(0xFFAAAAAA),
-            fontSize: SizeConfig.horizontal * 3.5,
+            fontSize: SizeConfig.horizontal * 3,
           ),
         ),
       ),

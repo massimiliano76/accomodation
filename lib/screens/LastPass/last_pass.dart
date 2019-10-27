@@ -3,6 +3,7 @@ import 'package:easyhome/components/Navbar/navbar.dart';
 import 'package:easyhome/components/footer.dart';
 import 'package:easyhome/components/forward_button.dart';
 import 'package:easyhome/components/payments_card.dart';
+import 'package:easyhome/screens/PayPage/pay_page.dart';
 import 'package:easyhome/services/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -34,13 +35,13 @@ class LastPass extends StatelessWidget {
                       onTap: () => Navigator.pop(context),
                     ),
                     ForwardButton(
-                      label: 'Avanti',
+                      label: 'Paga',
                       reverse: true,
                       onTap: () {
                         Navigator.push(
                           context,
                           PageTransition(
-                              child: null, type: PageTransitionType.fade),
+                              child: PayPage(), type: PageTransitionType.fade),
                         );
                       },
                     ),
@@ -91,6 +92,7 @@ class LastPass extends StatelessWidget {
                       ),
                       //TODO: make this image with a transparent image
                       CachedNetworkImage(
+                          height: SizeConfig.horizontal * 27,
                           imageUrl: 'https://i.ibb.co/Z1hhW5W/1desc2.png')
                     ],
                   ),
