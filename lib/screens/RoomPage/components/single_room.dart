@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easyhome/redux/store/store.dart';
 import 'package:easyhome/screens/DetailRoom/detail_room.dart';
 import 'package:easyhome/services/dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:page_transition/page_transition.dart';
 
 import '../../../services/size_config.dart';
@@ -172,31 +174,38 @@ class SingleRoom extends StatelessWidget {
               top: isBuying
                   ? SizeConfig.horizontal * 73.5
                   : SizeConfig.horizontal * 40,
-              child: GestureDetector(
-                onTap: () {
-                  // ignore: unnecessary_statements
-                  isSelected ? setState(() => isSelected = !isSelected) : null;
-                  loginDialog(context);
-                },
-                child: Hero(
-                  tag: "$heroTag avatar",
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30.0),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey,
-                            blurRadius: 5.0,
-                            offset: Offset(2, 5),
-                          )
-                        ]),
-                    child: CircleAvatar(
-                      radius: SizeConfig.horizontal * 7,
-                      backgroundColor: Colors.white,
-                      child: Icon(
-                        isSelected ? Icons.favorite : Icons.favorite_border,
-                        color: Theme.of(context).accentColor,
-                        size: SizeConfig.horizontal * 7,
+              child: StoreConnector<AppState, bool>(
+                converter: (store) => store.state.isLogIn,
+                builder: (context, isLogIn) => GestureDetector(
+                  onTap: () {
+                    if (isLogIn) {
+                      // ignore: unnecessary_statements
+                      !isSelected ? loginDialog(context, "favorite") : null;
+                      setState(() => isSelected = !isSelected);
+                    } else {
+                      loginDialog(context, "favorite");
+                    }
+                  },
+                  child: Hero(
+                    tag: "$heroTag avatar",
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30.0),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey,
+                              blurRadius: 5.0,
+                              offset: Offset(2, 5),
+                            )
+                          ]),
+                      child: CircleAvatar(
+                        radius: SizeConfig.horizontal * 7,
+                        backgroundColor: Colors.white,
+                        child: Icon(
+                          isSelected ? Icons.favorite : Icons.favorite_border,
+                          color: Theme.of(context).accentColor,
+                          size: SizeConfig.horizontal * 7,
+                        ),
                       ),
                     ),
                   ),

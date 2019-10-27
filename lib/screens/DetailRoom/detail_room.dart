@@ -56,7 +56,7 @@ class DetailRoom extends StatelessWidget {
                                         child: CompleteData(),
                                       ),
                                     )
-                                  : loginDialog(context);
+                                  : loginDialog(context, "prenote");
                             },
                           ),
                         ),

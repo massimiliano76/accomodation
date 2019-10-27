@@ -1,12 +1,25 @@
 import 'package:easyhome/components/forward_button.dart';
 import 'package:easyhome/redux/store/store.dart';
-import 'package:easyhome/screens/RoomPage/room_page.dart';
+import 'package:easyhome/screens/LoginPage/login_page.dart';
 import 'package:easyhome/services/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:page_transition/page_transition.dart';
 
-loginDialog(BuildContext context) {
+loginDialog(BuildContext context, String type) {
+  //type can be equel to "favorite" or "prenote"
+
+  Map<String, Map<String, dynamic>> notLoginItems = {
+    'favorite': {
+      'icon': Icons.favorite_border,
+      'text': "Accedi per salvare i tuoi appartamenti preferiti!",
+    },
+    'prenote': {
+      'icon': Icons.description,
+      'text': "Accedi per firmare i tuoi smart-contact!",
+    }
+  };
+
   SizeConfig().init(context);
   return showDialog(
     context: context,
@@ -32,7 +45,7 @@ loginDialog(BuildContext context) {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Icon(
-                      isLogIn ? Icons.favorite : Icons.favorite_border,
+                      isLogIn ? Icons.favorite : notLoginItems[type]['icon'],
                       size: SizeConfig.horizontal * 20,
                       color: Theme.of(context).accentColor,
                     ),
@@ -43,7 +56,8 @@ loginDialog(BuildContext context) {
                           Text(
                             isLogIn
                                 ? 'Aggiunto ai preferiti!'
-                                : 'Accedi per salvare i tuoi appartamenti preferiti!',
+                                : notLoginItems[type]['text'],
+                            textAlign: TextAlign.center,
                             style: TextStyle(
                               fontWeight: FontWeight.w300,
                               color: Color(0xFF707070),
@@ -80,7 +94,7 @@ loginDialog(BuildContext context) {
                                           context,
                                           PageTransition(
                                             type: PageTransitionType.fade,
-                                            child: RoomPage(),
+                                            child: LoginPage(),
                                           ),
                                         );
                                       },
