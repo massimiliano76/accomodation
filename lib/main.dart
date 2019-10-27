@@ -7,6 +7,7 @@ import 'package:redux/redux.dart';
 import 'package:easyhome/redux/reducers/reducers.dart';
 
 void main() {
+//  WidgetsFlutterBinding.ensureInitialized()
   SystemChrome.setPreferredOrientations(
     [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
   );

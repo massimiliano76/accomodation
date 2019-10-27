@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easyhome/screens/DetailRoom/detail_room.dart';
+import 'package:easyhome/services/dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -150,7 +151,8 @@ class SingleRoom extends StatelessWidget {
                                                         SizeConfig.horizontal *
                                                             5,
                                                   ),
-                                                ))
+                                                ),
+                                              )
                                       ],
                                     ),
                                   ),
@@ -172,73 +174,9 @@ class SingleRoom extends StatelessWidget {
                   : SizeConfig.horizontal * 40,
               child: GestureDetector(
                 onTap: () {
-                  setState(() => isSelected = !isSelected);
-                  if (isSelected) {
-                    showDialog(
-                      context: context,
-                      builder: (context) => AlertDialog(
-                        backgroundColor: Colors.white,
-                        content: Container(
-                          child: Stack(
-                            children: <Widget>[
-                              Positioned(
-                                top: 0,
-                                left: 0,
-                                child: InkWell(
-                                  borderRadius: BorderRadius.circular(10),
-                                  onTap: () => Navigator.pop(context),
-                                  child: Icon(Icons.close),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    top: SizeConfig.horizontal * 10),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: <Widget>[
-                                    Icon(
-                                      Icons.favorite,
-                                      size: SizeConfig.horizontal * 20,
-                                      color: Theme.of(context).accentColor,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          top: SizeConfig.horizontal * 5),
-                                      child: Column(
-                                        children: <Widget>[
-                                          Text(
-                                            'Aggiunto ai preferiti!',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.w300,
-                                              color: Color(0xFF707070),
-                                              fontSize:
-                                                  SizeConfig.horizontal * 4.5,
-                                            ),
-                                          ),
-                                          SizedBox(height: 15),
-                                          Text(
-                                            'Potrai ritrovare tutti i tuoi appartamenti preferiti nella dashboard in alto a destra.',
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              color: Color(0xFFAAAAAA),
-                                              fontWeight: FontWeight.w300,
-                                              fontSize:
-                                                  SizeConfig.horizontal * 3,
-                                            ),
-                                          ),
-                                          SizedBox(height: 15),
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    );
-                  }
+                  // ignore: unnecessary_statements
+                  isSelected ? setState(() => isSelected = !isSelected) : null;
+                  loginDialog(context);
                 },
                 child: Hero(
                   tag: "$heroTag avatar",

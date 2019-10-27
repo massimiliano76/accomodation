@@ -3,6 +3,7 @@ import 'package:easyhome/components/footer.dart';
 import 'package:easyhome/redux/store/store.dart';
 import 'package:easyhome/screens/CompleteData/complete_data.dart';
 import 'package:easyhome/screens/RoomPage/components/single_room.dart';
+import 'package:easyhome/services/dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:page_transition/page_transition.dart';
@@ -47,7 +48,7 @@ class DetailRoom extends StatelessWidget {
                             label: 'Prenota ora',
                             reverse: true,
                             onTap: () {
-                              !islogIn
+                              islogIn
                                   ? Navigator.push(
                                       context,
                                       PageTransition(
@@ -55,7 +56,7 @@ class DetailRoom extends StatelessWidget {
                                         child: CompleteData(),
                                       ),
                                     )
-                                  : null;
+                                  : loginDialog(context);
                             },
                           ),
                         ),

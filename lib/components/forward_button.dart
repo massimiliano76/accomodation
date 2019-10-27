@@ -2,11 +2,12 @@ import 'package:easyhome/services/size_config.dart';
 import 'package:flutter/material.dart';
 
 class ForwardButton extends StatelessWidget {
-  ForwardButton({this.label, this.onTap, this.reverse});
+  ForwardButton({this.label, this.onTap, this.reverse, this.fontWeight});
 
   final String label;
   final Function onTap;
   final bool reverse;
+  final FontWeight fontWeight;
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +41,7 @@ class ForwardButton extends StatelessWidget {
               style: TextStyle(
                 color: setColor(),
                 fontSize: SizeConfig.horizontal * 4.5,
+                fontWeight: fontWeight ?? FontWeight.w300,
               ),
             ),
           ),
