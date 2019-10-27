@@ -5,7 +5,6 @@ import 'package:easyhome/components/register_card.dart';
 import 'package:easyhome/redux/actions/actions.dart';
 import 'package:easyhome/redux/store/store.dart';
 import 'package:easyhome/screens/LoginPage/login_page.dart';
-import 'package:easyhome/screens/RoomPage/room_page.dart';
 import 'package:easyhome/services/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -93,17 +92,14 @@ class RegisterPage extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: <Widget>[
                                   StoreConnector<AppState, VoidCallback>(
-                                    converter: (store) =>
-                                        () {
-                                          store.dispatch(LoginAction());
-                                          Navigator.push(
-                                            context,
-                                            PageTransition(
+                                    converter: (store) => () {
+                                      store.dispatch(LoginAction());
+                                      Navigator.of(context).pushAndRemoveUntil(
+                                          PageTransition(
                                               type: PageTransitionType.fade,
-                                              child: RoomPage(),
-                                            ),
-                                          );
-                                        },
+                                              child: LoginPage()),
+                                          (Route<dynamic> route) => false);
+                                    },
                                     builder: (context, login) => RegisterButton(
                                       label: "Registrati",
                                       onTap: login,

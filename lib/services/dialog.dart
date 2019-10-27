@@ -1,6 +1,6 @@
 import 'package:easyhome/components/forward_button.dart';
 import 'package:easyhome/redux/store/store.dart';
-import 'package:easyhome/screens/LoginPage/login_page.dart';
+import 'package:easyhome/screens/RoomPage/room_page.dart';
 import 'package:easyhome/services/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -76,14 +76,13 @@ loginDialog(BuildContext context) {
                                       label: "Accedi",
                                       reverse: true,
                                       onTap: () {
-                                        return Navigator.of(context)
-                                            .pushAndRemoveUntil(
-                                                PageTransition(
-                                                    type:
-                                                        PageTransitionType.fade,
-                                                    child: LoginPage()),
-                                                (Route<dynamic> route) =>
-                                                    false);
+                                        Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type: PageTransitionType.fade,
+                                            child: RoomPage(),
+                                          ),
+                                        );
                                       },
                                     )
                                   ],
