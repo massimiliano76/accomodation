@@ -22,7 +22,9 @@ class PayPage extends StatelessWidget {
                   onTap: () {
                     Navigator.of(context).pushAndRemoveUntil(
                         PageTransition(
-                            type: PageTransitionType.fade, child: RoomPage()),
+                          type: PageTransitionType.fade,
+                          child: RoomPage(),
+                        ),
                         (Route<dynamic> route) => false);
                   },
                 ),

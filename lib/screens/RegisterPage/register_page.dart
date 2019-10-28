@@ -5,6 +5,7 @@ import 'package:easyhome/components/register_card.dart';
 import 'package:easyhome/redux/actions/actions.dart';
 import 'package:easyhome/redux/store/store.dart';
 import 'package:easyhome/screens/LoginPage/login_page.dart';
+import 'package:easyhome/screens/RoomPage/room_page.dart';
 import 'package:easyhome/services/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -97,7 +98,7 @@ class RegisterPage extends StatelessWidget {
                                       Navigator.of(context).pushAndRemoveUntil(
                                           PageTransition(
                                               type: PageTransitionType.fade,
-                                              child: LoginPage()),
+                                              child: RoomPage()),
                                           (Route<dynamic> route) => false);
                                     },
                                     builder: (context, login) => RegisterButton(

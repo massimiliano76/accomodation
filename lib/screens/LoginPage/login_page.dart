@@ -64,9 +64,12 @@ class LoginPage extends StatelessWidget {
                       StoreConnector<AppState, VoidCallback>(
                         converter: (store) => () {
                           store.dispatch(LoginAction());
-                          Navigator.of(context).pushReplacement(PageTransition(
+                          Navigator.of(context).pushReplacement(
+                            PageTransition(
                               type: PageTransitionType.fade,
-                              child: RoomPage()));
+                              child: RoomPage(),
+                            ),
+                          );
                         },
                         builder: (context, login) => RegisterButton(
                           onTap: login,

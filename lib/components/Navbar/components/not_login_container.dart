@@ -55,7 +55,11 @@ class NotLoginContainer extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Icon(Icons.supervised_user_circle),
+            Icon(
+              Icons.supervised_user_circle,
+              size: SizeConfig.horizontal * 6,
+              color: Color(0xFF777777),
+            ),
             GestureDetector(
               child: Text(
                 'Accedi',

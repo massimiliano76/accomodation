@@ -40,7 +40,11 @@ class PaymentPage extends StatelessWidget {
                       label: 'Avanti',
                       reverse: true,
                       onTap: () {
-                        Navigator.push(context, PageTransition(child: LastPass(), type: PageTransitionType.fade));
+                        Navigator.push(
+                            context,
+                            PageTransition(
+                                child: LastPass(),
+                                type: PageTransitionType.fade));
                       },
                     ),
                   ],
@@ -179,7 +183,9 @@ class PaymentPage extends StatelessWidget {
                                 children: <Widget>[
                                   Text(
                                     'Con tecnologia  ',
-                                    style: TextStyle(),
+                                    style: TextStyle(
+                                      fontSize: SizeConfig.horizontal * 2.9,
+                                    ),
                                   ),
                                   Container(
                                     height: SizeConfig.horizontal * 3,

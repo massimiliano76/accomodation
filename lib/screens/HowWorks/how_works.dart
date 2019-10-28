@@ -12,66 +12,57 @@ class HowWorks extends StatelessWidget {
       child: Scaffold(
         body: Stack(
           children: <Widget>[
-            SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  SizedBox(
-                    height: SizeConfig.horizontal * 27,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: SizeConfig.horizontal * 5,
+            Positioned(
+              top: SizeConfig.horizontal * 22,
+              left: 0,
+              right: 0,
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: SizeConfig.horizontal * 2,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    ForwardButton(
+                      label: 'Indietro',
+                      reverse: false,
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        ForwardButton(
-                          label: 'Indietro',
-                          reverse: false,
-                        ),
-                        ForwardButton(
-                          label: 'Andiamo',
-                          reverse: true,
-                          onTap: () {},
-                        ),
-                      ],
+                    ForwardButton(
+                      label: 'Andiamo',
+                      reverse: true,
+                      onTap: () {},
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                      left: SizeConfig.horizontal * 10,
-                      right: SizeConfig.horizontal * 10,
-                      top: SizeConfig.horizontal * 15,
-                    ),
-                    child: Column(
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: SizeConfig.horizontal * 42),
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: SizeConfig.horizontal * 10),
+                child: ListView(
+                  children: <Widget>[
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.only(
-                              bottom: SizeConfig.horizontal * 8),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                'COME FUNZIONA',
-                                style: TextStyle(
-                                  color: Color(0xFFAAAAAA),
-                                  fontSize: SizeConfig.horizontal * 3.5,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                'È semplice\ncome contare!',
-                                style: TextStyle(
-                                  fontSize: SizeConfig.horizontal * 7,
-                                ),
-                              ),
-                            ],
+                        Text(
+                          'COME FUNZIONA',
+                          style: TextStyle(
+                            color: Color(0xFFAAAAAA),
+                            fontSize: SizeConfig.horizontal * 3.5,
                           ),
                         ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          'È semplice\ncome contare!',
+                          style: TextStyle(
+                            fontSize: SizeConfig.horizontal * 7,
+                          ),
+                        ),
+                        SizedBox(height: SizeConfig.horizontal * 7),
                         FeatureItem(
                           title: 'Ricerca Personalizzata',
                           body:
@@ -92,19 +83,16 @@ class HowWorks extends StatelessWidget {
                           body:
                               'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna',
                         ),
-                        Footer(),
                       ],
                     ),
-                  ),
-                ],
+                    Footer(),
+                  ],
+                ),
               ),
             ),
-            Align(
-              alignment: Alignment.topCenter,
-              child: Navbar(
-                color: Theme.of(context).accentColor,
-                context: context,
-              ),
+            Navbar(
+              color: Theme.of(context).accentColor,
+              context: context,
             ),
           ],
         ),

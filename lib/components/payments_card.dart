@@ -80,14 +80,15 @@ class PaymentsCard extends StatelessWidget {
                               ),
                             ),
                             Material(
-                                color: Colors.transparent,
-                                child: Text(
-                                  '450€',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: SizeConfig.horizontal * 5,
-                                  ),
-                                ))
+                              color: Colors.transparent,
+                              child: Text(
+                                '450€',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: SizeConfig.horizontal * 5,
+                                ),
+                              ),
+                            )
                           ],
                         ),
                       ),
@@ -96,8 +97,9 @@ class PaymentsCard extends StatelessWidget {
                         child: Text(
                           'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.',
                           style: TextStyle(
-                              fontSize: SizeConfig.horizontal * 3,
-                              color: Color(0xFFAAAAAA)),
+                            fontSize: SizeConfig.horizontal * 3,
+                            color: Color(0xFFAAAAAA),
+                          ),
                         ),
                       ),
                     ],

@@ -33,24 +33,24 @@ class _NavbarState extends State<Navbar> with TickerProviderStateMixin {
       duration: Duration(milliseconds: 700),
     );
     containerAnimation = Tween<double>(
-            begin: 0,
-            end: store.state.isLogIn
-                ? MediaQuery.of(widget.context).size.width
-                : MediaQuery.of(widget.context).size.width / 1.25)
-        .animate(CurvedAnimation(
+      begin: 0,
+      end: store.state.isLogIn
+          ? MediaQuery.of(widget.context).size.width * 1.05
+          : MediaQuery.of(widget.context).size.width / 1.25,
+    ).animate(CurvedAnimation(
       parent: _controller,
       curve: Curves.fastOutSlowIn,
       reverseCurve: Curves.fastOutSlowIn,
     ))
-          ..addStatusListener((status) {
-            if (status == AnimationStatus.forward) {
-              isExpanded = true;
-            }
-            if (status == AnimationStatus.dismissed) {
-              isExpanded = false;
-            }
-            setState(() {});
-          });
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.forward) {
+          isExpanded = true;
+        }
+        if (status == AnimationStatus.dismissed) {
+          isExpanded = false;
+        }
+        setState(() {});
+      });
 
     opacityBackground = Tween<double>(
       begin: 0,
