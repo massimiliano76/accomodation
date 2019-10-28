@@ -2,12 +2,20 @@ import 'package:easyhome/services/size_config.dart';
 import 'package:flutter/material.dart';
 
 class ForwardButton extends StatelessWidget {
-  ForwardButton({this.label, this.onTap, this.reverse, this.fontWeight});
+  ForwardButton(
+      {this.label,
+      this.onTap,
+      this.reverse,
+      this.fontWeight,
+      this.fontSizeLabel,
+      this.fontSizeIcon});
 
   final String label;
   final Function onTap;
   final bool reverse;
   final FontWeight fontWeight;
+  final fontSizeLabel;
+  final fontSizeIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +37,7 @@ class ForwardButton extends StatelessWidget {
               ? Icon(
                   Icons.arrow_back_ios,
                   color: setColor(),
-                  size: SizeConfig.horizontal * 7,
+                  size: fontSizeIcon ?? SizeConfig.horizontal * 7,
                 )
               : SizedBox.shrink(),
           Padding(
@@ -40,7 +48,7 @@ class ForwardButton extends StatelessWidget {
               label,
               style: TextStyle(
                 color: setColor(),
-                fontSize: SizeConfig.horizontal * 4.5,
+                fontSize: fontSizeLabel ?? SizeConfig.horizontal * 4.5,
                 fontWeight: fontWeight ?? FontWeight.w300,
               ),
             ),
@@ -51,7 +59,7 @@ class ForwardButton extends StatelessWidget {
                   child: Icon(
                     Icons.arrow_back_ios,
                     color: setColor(),
-                    size: SizeConfig.horizontal * 7,
+                    size: fontSizeIcon ?? SizeConfig.horizontal * 7,
                   ),
                 )
               : SizedBox.shrink()

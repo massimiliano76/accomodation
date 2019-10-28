@@ -10,6 +10,7 @@ import 'package:easyhome/services/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:easyhome/services/data.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -64,12 +65,19 @@ class LoginPage extends StatelessWidget {
                       StoreConnector<AppState, VoidCallback>(
                         converter: (store) => () {
                           store.dispatch(LoginAction());
-                          Navigator.of(context).pushReplacement(
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              child: RoomPage(),
-                            ),
-                          );
+                          store.state.hasFinished
+                              ? Navigator.of(context).pushReplacement(
+                                  PageTransition(
+                                    type: PageTransitionType.fade,
+                                    child: RoomPage(),
+                                  ),
+                                )
+                              : Navigator.of(context).pushReplacement(
+                                  PageTransition(
+                                    type: PageTransitionType.fade,
+                                    child: Data.pages[store.state.pagePosition],
+                                  ),
+                                );
                         },
                         builder: (context, login) => RegisterButton(
                           onTap: login,

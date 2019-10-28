@@ -1,5 +1,10 @@
+import 'package:easyhome/screens/BudgetQuestion/budget_question.dart';
+import 'package:easyhome/screens/CityQuestion/city_question.dart';
+import 'package:easyhome/screens/PreferencesQuestion/preferences_question.dart';
+import 'package:easyhome/screens/UniversityQuestion/university_question.dart';
+
 class Data {
-  final List city = [
+  static final List city = [
     'Palermo',
     'Napoli',
     'Firenze',
@@ -8,7 +13,7 @@ class Data {
     'Roma',
   ];
 
-  final List university = [
+  static final List university = [
     'Università 1',
     'Università 2',
     'Università 3',
@@ -16,7 +21,7 @@ class Data {
     'Università 5',
   ];
 
-  final List budget = [
+  static final List budget = [
     '200€',
     '300€',
     '400€',
@@ -25,8 +30,12 @@ class Data {
     '700€ +',
   ];
 
-  final List preference = [
-    'Convivere',
-    'Stare da solo'
-  ];
+  static final List preference = ['Convivere', 'Stare da solo'];
+
+  static final Map<int, dynamic> pages = {
+    1: CityQuestion(),
+    2: UniversityQuestion(),
+    3: BudgetQuestion(),
+    4: PreferencesQuestion(),
+  };
 }

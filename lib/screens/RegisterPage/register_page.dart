@@ -4,6 +4,7 @@ import 'package:easyhome/components/register_button.dart';
 import 'package:easyhome/components/register_card.dart';
 import 'package:easyhome/redux/actions/actions.dart';
 import 'package:easyhome/redux/store/store.dart';
+import 'package:easyhome/screens/CityQuestion/city_question.dart';
 import 'package:easyhome/screens/LoginPage/login_page.dart';
 import 'package:easyhome/screens/RoomPage/room_page.dart';
 import 'package:easyhome/services/size_config.dart';
@@ -95,11 +96,22 @@ class RegisterPage extends StatelessWidget {
                                   StoreConnector<AppState, VoidCallback>(
                                     converter: (store) => () {
                                       store.dispatch(LoginAction());
-                                      Navigator.of(context).pushAndRemoveUntil(
-                                          PageTransition(
-                                              type: PageTransitionType.fade,
-                                              child: RoomPage()),
-                                          (Route<dynamic> route) => false);
+                                      store.state.hasFinished
+                                          ? Navigator.of(context)
+                                              .pushAndRemoveUntil(
+                                                  PageTransition(
+                                                      type: PageTransitionType
+                                                          .fade,
+                                                      child: RoomPage()),
+                                                  (Route<dynamic> route) =>
+                                                      false)
+                                          : Navigator.of(context)
+                                              .pushReplacement(
+                                              PageTransition(
+                                                type: PageTransitionType.fade,
+                                                child: CityQuestion(),
+                                              ),
+                                            );
                                     },
                                     builder: (context, login) => RegisterButton(
                                       label: "Registrati",

@@ -8,9 +8,10 @@ class LogoutAction {
   String id = Constants.LOGOUT_ACTION;
 }
 
-class ContainerAnimation {
-  ContainerAnimation({this.animationValue});
+class FinishedQuestions {
+  String id = Constants.FINISHED_QUESTIONS;
+}
 
-  String id = Constants.CONTAINER_ANIMATION;
-  double animationValue = 0;
+class IncrementPageCounter {
+  String id = Constants.INCREMENT_PAGE_COUNTER;
 }

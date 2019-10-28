@@ -1,6 +1,8 @@
 import 'package:easyhome/redux/actions/actions.dart';
 import 'package:easyhome/redux/store/store.dart';
+import 'package:easyhome/screens/ProfilePage/profile_page.dart';
 import 'package:easyhome/screens/RoomPage/room_page.dart';
+import 'package:easyhome/services/data.dart';
 import 'package:easyhome/services/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -63,7 +65,13 @@ class LoginContainer extends StatelessWidget {
             textAlign: TextAlign.end,
             style: textStyle,
           ),
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+              context,
+              PageTransition(
+                  child: ProfilePage(), type: PageTransitionType.fade),
+            );
+          },
         ),
         SizedBox(
           height: SizeConfig.horizontal * 3,
@@ -90,11 +98,18 @@ class LoginContainer extends StatelessWidget {
             StoreConnector<AppState, VoidCallback>(
               converter: (store) => () {
                 store.dispatch(LogoutAction());
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    PageTransition(
-                        child: RoomPage(), type: PageTransitionType.fade),
-                    (Route<dynamic> route) => false);
+                store.state.hasFinished
+                    ? Navigator.pushAndRemoveUntil(
+                        context,
+                        PageTransition(
+                            child: RoomPage(), type: PageTransitionType.fade),
+                        (Route<dynamic> route) => false)
+                    : Navigator.of(context).pushReplacement(
+                        PageTransition(
+                          type: PageTransitionType.fade,
+                          child: Data.pages[store.state.pagePosition],
+                        ),
+                      );
               },
               builder: (context, logout) => GestureDetector(
                 child: Text(

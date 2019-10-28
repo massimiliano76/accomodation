@@ -1,7 +1,6 @@
 class AppState {
   bool isLogIn = false;
 
-  Map animation = {
-    'container': 0.0,
-  };
+  bool hasFinished = false;
+  int pagePosition = 1;
 }
