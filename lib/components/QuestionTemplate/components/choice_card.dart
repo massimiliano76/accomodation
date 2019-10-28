@@ -32,7 +32,6 @@ class _ChoiceCardState extends State<ChoiceCard> with TickerProviderStateMixin {
   @override
   void dispose() {
     _controller.dispose();
-    print('dispose');
     super.dispose();
   }
 

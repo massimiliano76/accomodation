@@ -4,6 +4,7 @@ import 'package:easyhome/components/Navbar/components/not_login_container.dart';
 import 'package:easyhome/redux/store/store.dart';
 import 'package:easyhome/services/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:easyhome/main.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
 class Navbar extends StatefulWidget {
@@ -21,6 +22,7 @@ class _NavbarState extends State<Navbar> with TickerProviderStateMixin {
   Animation containerAnimation;
   Animation opacityBackground;
   bool isExpanded = false;
+  bool isLogIn;
 
   @override
   void initState() {
@@ -30,24 +32,25 @@ class _NavbarState extends State<Navbar> with TickerProviderStateMixin {
       vsync: this,
       duration: Duration(milliseconds: 700),
     );
-
     containerAnimation = Tween<double>(
-      begin: 0,
-      end: MediaQuery.of(widget.context).size.width / 1.3,
-    ).animate(CurvedAnimation(
+            begin: 0,
+            end: store.state.isLogIn
+                ? MediaQuery.of(widget.context).size.width
+                : MediaQuery.of(widget.context).size.width / 1.25)
+        .animate(CurvedAnimation(
       parent: _controller,
       curve: Curves.fastOutSlowIn,
       reverseCurve: Curves.fastOutSlowIn,
     ))
-      ..addStatusListener((status) {
-        if (status == AnimationStatus.forward) {
-          isExpanded = true;
-        }
-        if (status == AnimationStatus.dismissed) {
-          isExpanded = false;
-        }
-        setState(() {});
-      });
+          ..addStatusListener((status) {
+            if (status == AnimationStatus.forward) {
+              isExpanded = true;
+            }
+            if (status == AnimationStatus.dismissed) {
+              isExpanded = false;
+            }
+            setState(() {});
+          });
 
     opacityBackground = Tween<double>(
       begin: 0,
@@ -105,26 +108,24 @@ class _NavbarState extends State<Navbar> with TickerProviderStateMixin {
               : SizedBox.shrink(),
           StoreConnector<AppState, bool>(
             converter: (store) => store.state.isLogIn,
-            builder: (context, isLogIn) => Container(
+            builder: (context, isLogIn) => SizedBox(
               width: double.infinity,
               height: containerAnimation.value,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.vertical(
-                  bottom: Radius.circular(30),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.vertical(
+                    bottom: Radius.circular(30),
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey,
+                      blurRadius: 5.0,
+                    )
+                  ],
                 ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey,
-                    blurRadius: 5.0,
-                  )
-                ],
+                child: isLogIn ? LoginContainer() : NotLoginContainer(),
               ),
-              child: isLogIn
-                  ? LoginContainer()
-                  : NotLoginContainer(
-                      animationValue: containerAnimation.value,
-                    ),
             ),
           ),
           GestureDetector(

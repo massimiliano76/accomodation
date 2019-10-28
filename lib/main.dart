@@ -6,12 +6,13 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import 'package:easyhome/redux/reducers/reducers.dart';
 
+final store = Store(reducers, initialState: AppState());
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
     [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
   );
-  final store = Store(reducers, initialState: AppState());
   runApp(EasyHome(
     store: store,
   ));
