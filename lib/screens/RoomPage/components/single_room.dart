@@ -1,11 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easyhome/redux/actions/actions.dart';
 import 'package:easyhome/redux/store/store.dart';
 import 'package:easyhome/screens/DetailRoom/detail_room.dart';
 import 'package:easyhome/services/dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:page_transition/page_transition.dart';
-
+import 'package:easyhome/main.dart';
 import '../../../services/size_config.dart';
 
 class SingleRoom extends StatelessWidget {
@@ -174,18 +175,26 @@ class SingleRoom extends StatelessWidget {
               top: isBuying
                   ? SizeConfig.horizontal * 73.5
                   : SizeConfig.horizontal * 40,
-              child: StoreConnector<AppState, bool>(
-                converter: (store) => store.state.isLogIn,
-                builder: (context, isLogIn) => GestureDetector(
-                  onTap: () {
-                    if (isLogIn) {
-                      // ignore: unnecessary_statements
-                      !isSelected ? loginDialog(context, "favorite") : null;
-                      setState(() => isSelected = !isSelected);
-                    } else {
+              child: StoreConnector<AppState, VoidCallback>(
+                converter: (store) => () {
+                  if (store.state.isLogIn) {
+                    // ignore: unnecessary_statements
+                    if (isSelected) {
                       loginDialog(context, "favorite");
+                      store
+                          .dispatch(AddToFavorite(payload: int.parse(heroTag)));
+                    } else {
+                      store.dispatch(
+                          RemoveToFavorite(payload: int.parse(heroTag)));
                     }
-                  },
+                    setState(() => isSelected = !isSelected);
+                  } else {
+                    loginDialog(context, "favorite");
+                  }
+                  return store.state.isLogIn;
+                },
+                builder: (context, favorite) => GestureDetector(
+                  onTap: favorite,
                   child: Hero(
                     tag: "$heroTag avatar",
                     child: Container(
@@ -202,7 +211,9 @@ class SingleRoom extends StatelessWidget {
                         radius: SizeConfig.horizontal * 7,
                         backgroundColor: Colors.white,
                         child: Icon(
-                          isSelected ? Icons.favorite : Icons.favorite_border,
+                          store.state.favorite[int.parse(heroTag)]
+                              ? Icons.favorite
+                              : Icons.favorite_border,
                           color: Theme.of(context).accentColor,
                           size: SizeConfig.horizontal * 7,
                         ),

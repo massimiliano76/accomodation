@@ -21,6 +21,7 @@ class ProfilePage extends StatelessWidget {
                       horizontal: SizeConfig.horizontal * 8,
                     ),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
                           'Il mio profilo',
