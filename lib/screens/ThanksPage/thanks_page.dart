@@ -1,11 +1,12 @@
 import 'package:easyhome/components/Navbar/navbar.dart';
 import 'package:easyhome/components/forward_button.dart';
 import 'package:easyhome/screens/RoomPage/room_page.dart';
+import 'package:easyhome/services/animations.dart';
 import 'package:easyhome/services/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
-class PayPage extends StatelessWidget {
+class ThanksPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -39,21 +40,33 @@ class PayPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Text(
-                      'Grazie per aver scelto noi',
-                      style: TextStyle(
-                        color: Theme.of(context).accentColor,
-                        fontSize: SizeConfig.horizontal * 5,
+                    FadeInWithTranslate(
+                      delay: 200,
+                      isX: true,
+                      translateXStart: 140,
+                      translateXEnd: 0,
+                      child: Text(
+                        'Grazie per aver scelto noi',
+                        style: TextStyle(
+                          color: Theme.of(context).accentColor,
+                          fontSize: SizeConfig.horizontal * 5,
+                        ),
                       ),
                     ),
                     SizedBox(
                       height: SizeConfig.horizontal * 2,
                     ),
-                    Text(
-                      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFFAAAAAA),
+                    FadeInWithTranslate(
+                      delay: 200,
+                      isX: true,
+                      translateXStart: -140,
+                      translateXEnd: 0,
+                      child: Text(
+                        'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Color(0xFFAAAAAA),
+                        ),
                       ),
                     ),
                   ],

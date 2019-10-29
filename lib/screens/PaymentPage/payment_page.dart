@@ -5,6 +5,7 @@ import 'package:easyhome/components/forward_button.dart';
 import 'package:easyhome/components/input_form.dart';
 import 'package:easyhome/components/payments_card.dart';
 import 'package:easyhome/screens/LastPass/last_pass.dart';
+import 'package:easyhome/services/animations.dart';
 import 'package:easyhome/services/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -15,6 +16,17 @@ import 'components/paypal_button.dart';
 class PaymentPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    List<String> labelOne = [
+      "Nome",
+      "Cognome",
+      "Indirizzo",
+      "Città",
+      "Provincia",
+      "CAP",
+      "Paese",
+      "Cellulare"
+    ];
+
     SizeConfig().init(context);
     return SafeArea(
       child: Scaffold(
@@ -41,10 +53,10 @@ class PaymentPage extends StatelessWidget {
                       reverse: true,
                       onTap: () {
                         Navigator.push(
-                            context,
-                            PageTransition(
-                                child: LastPass(),
-                                type: PageTransitionType.fade));
+                          context,
+                          PageTransition(
+                              child: LastPass(), type: PageTransitionType.fade),
+                        );
                       },
                     ),
                   ],
@@ -55,8 +67,10 @@ class PaymentPage extends StatelessWidget {
               margin: EdgeInsets.only(top: SizeConfig.horizontal * 32),
               child: ListView(
                 children: <Widget>[
-                  PaymentsCard(
-                    title: 'Pagamento',
+                  FadeInWithScale(
+                    child: PaymentsCard(
+                      title: 'Pagamento',
+                    ),
                   ),
                   SizedBox(
                     height: SizeConfig.horizontal * 15,
@@ -67,49 +81,39 @@ class PaymentPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(
-                          '1. Dati di fatturazione',
-                          style: TextStyle(
-                            color: Color(0xFF707070),
-                            fontWeight: FontWeight.bold,
-                            fontSize: SizeConfig.horizontal * 4.5,
+                        FadeIn(
+                          delay: 500,
+                          child: Text(
+                            '1. Dati di fatturazione',
+                            style: TextStyle(
+                              color: Color(0xFF707070),
+                              fontWeight: FontWeight.bold,
+                              fontSize: SizeConfig.horizontal * 4.5,
+                            ),
                           ),
                         ),
                         SizedBox(
                           height: SizeConfig.horizontal * 8,
                         ),
-                        InputForm(
-                          label: 'Nome',
-                          textInputType: TextInputType.text,
-                        ),
-                        InputForm(
-                          label: 'Cognome',
-                          textInputType: TextInputType.text,
-                        ),
-                        InputForm(
-                          label: 'Indirizzo',
-                          textInputType: TextInputType.text,
-                        ),
-                        InputForm(
-                          label: 'Città',
-                          textInputType: TextInputType.text,
-                        ),
-                        InputForm(
-                          label: 'Provincia',
-                          textInputType: TextInputType.text,
-                        ),
-                        InputForm(
-                          label: 'CAP',
-                          textInputType: TextInputType.number,
-                        ),
-                        InputForm(
-                          label: 'Paese',
-                          textInputType: TextInputType.text,
-                        ),
-                        InputForm(
-                          label: 'Cellulare',
-                          textInputType: TextInputType.phone,
-                        ),
+                        Column(
+                            children: labelOne
+                                .asMap()
+                                .map(
+                                  (index, element) => MapEntry(
+                                    index,
+                                    FadeInWithTranslate(
+                                      delay: 650 - index * 70,
+                                      isX: true,
+                                      translateXStart: 140,
+                                      translateXEnd: 0,
+                                      child: InputForm(
+                                        label: labelOne[index],
+                                      ),
+                                    ),
+                                  ),
+                                )
+                                .values
+                                .toList()),
                         SizedBox(
                           height: SizeConfig.horizontal * 15,
                         ),

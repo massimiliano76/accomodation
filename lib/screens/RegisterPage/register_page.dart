@@ -4,15 +4,25 @@ import 'package:easyhome/components/register_button.dart';
 import 'package:easyhome/components/register_card.dart';
 import 'package:easyhome/redux/actions/actions.dart';
 import 'package:easyhome/redux/store/store.dart';
-import 'package:easyhome/screens/CityQuestion/city_question.dart';
 import 'package:easyhome/screens/LoginPage/login_page.dart';
 import 'package:easyhome/screens/RoomPage/room_page.dart';
+import 'package:easyhome/services/animations.dart';
+import 'package:easyhome/services/data.dart';
 import 'package:easyhome/services/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:page_transition/page_transition.dart';
 
 class RegisterPage extends StatelessWidget {
+  List<String> label = [
+    "Nome",
+    "Cognome",
+    "Email",
+    "Nome Utente",
+    "Password",
+    "Ripeti Password",
+  ];
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -28,7 +38,7 @@ class RegisterPage extends StatelessWidget {
                   Expanded(
                     child: ListView(
                       children: <Widget>[
-                        Container(
+                        FadeInWithScale(
                           child: RegisterCard(
                             title: 'Hai già un account?',
                             buttonLabel: "Accedi",
@@ -42,17 +52,16 @@ class RegisterPage extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(
-                            left: SizeConfig.horizontal * 6,
-                            right: SizeConfig.horizontal * 6,
-                            bottom: SizeConfig.horizontal * 4,
+                          padding: EdgeInsets.symmetric(
+                            horizontal: SizeConfig.horizontal * 6,
+                            vertical: SizeConfig.horizontal * 4,
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: SizeConfig.horizontal * 6),
+                              FadeIn(
+                                delay: 500,
+                                duration: 300,
                                 child: Text(
                                   'Registrati',
                                   style: TextStyle(
@@ -61,31 +70,37 @@ class RegisterPage extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              InputForm(
-                                textInputType: TextInputType.text,
-                                label: 'Nome',
+                              SizedBox(
+                                height: SizeConfig.horizontal * 4,
                               ),
-                              InputForm(
-                                textInputType: TextInputType.text,
-                                label: 'Cognome',
-                              ),
-                              InputForm(
-                                textInputType: TextInputType.emailAddress,
-                                label: 'Email',
-                              ),
-                              InputForm(
-                                textInputType: TextInputType.text,
-                                label: 'Nome Utente',
-                              ),
-                              InputForm(
-                                textInputType: TextInputType.text,
-                                isObscured: true,
-                                label: 'Password',
-                              ),
-                              InputForm(
-                                textInputType: TextInputType.text,
-                                isObscured: true,
-                                label: 'Ripeti Password',
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: label
+                                    .asMap()
+                                    .map(
+                                      (index, element) {
+                                        bool obscure = false;
+                                        if (label[index].contains("Password")) {
+                                          obscure = true;
+                                        }
+                                        return MapEntry(
+                                          index,
+                                          FadeInWithTranslate(
+                                            isX: true,
+                                            translateXStart: 140.0,
+                                            translateXEnd: 0.0,
+                                            delay: 700 - index * 70,
+                                            child: InputForm(
+                                              textInputType: TextInputType.text,
+                                              label: label[index],
+                                              isObscured: obscure,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    )
+                                    .values
+                                    .toList(),
                               ),
                               SizedBox(
                                 height: 15,
@@ -96,22 +111,14 @@ class RegisterPage extends StatelessWidget {
                                   StoreConnector<AppState, VoidCallback>(
                                     converter: (store) => () {
                                       store.dispatch(LoginAction());
-                                      store.state.hasFinished
-                                          ? Navigator.of(context)
-                                              .pushAndRemoveUntil(
-                                                  PageTransition(
-                                                      type: PageTransitionType
-                                                          .fade,
-                                                      child: RoomPage()),
-                                                  (Route<dynamic> route) =>
-                                                      false)
-                                          : Navigator.of(context)
-                                              .pushReplacement(
-                                              PageTransition(
-                                                type: PageTransitionType.fade,
-                                                child: CityQuestion(),
-                                              ),
-                                            );
+                                      Navigator.of(context).pushAndRemoveUntil(
+                                          PageTransition(
+                                              type: PageTransitionType.fade,
+                                              child: store.state.hasFinished
+                                                  ? RoomPage()
+                                                  : Data.pages[store
+                                                      .state.pagePosition]),
+                                          (Route<dynamic> route) => false);
                                     },
                                     builder: (context, login) => RegisterButton(
                                       label: "Registrati",

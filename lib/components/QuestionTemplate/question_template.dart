@@ -1,6 +1,7 @@
 import 'package:easyhome/components/QuestionTemplate/components/choice_card.dart';
 import 'package:easyhome/components/forward_button.dart';
 import 'package:easyhome/components/Navbar/navbar.dart';
+import 'package:easyhome/services/animations.dart';
 import 'package:easyhome/services/size_config.dart';
 import 'package:flutter/material.dart';
 
@@ -77,15 +78,21 @@ class _QuestionTemplate extends State<QuestionTemplate> {
                       childAspectRatio: 15 / 8,
                       children: widget.data
                           .asMap()
-                          .map((index, element) => MapEntry(
+                          .map(
+                            (index, element) => MapEntry(
                               index,
                               GestureDetector(
                                 onTap: () => hasSelected(index),
-                                child: ChoiceCard(
-                                  label: element,
-                                  isSelected: selectItems[index],
+                                child: FadeInWithScale(
+                                  delay: 40 * index,
+                                  child: ChoiceCard(
+                                    label: element,
+                                    isSelected: selectItems[index],
+                                  ),
                                 ),
-                              )))
+                              ),
+                            ),
+                          )
                           .values
                           .toList(),
                     ),
