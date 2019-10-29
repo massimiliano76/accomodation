@@ -65,7 +65,7 @@ class _QuestionTemplate extends State<QuestionTemplate> {
                       top: SizeConfig.horizontal * 5,
                     ),
                     child: Text(
-                      'Dove cerchi appartamento?',
+                      widget.title,
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: SizeConfig.horizontal * 5),
                     ),
