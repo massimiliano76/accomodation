@@ -49,7 +49,6 @@ class _NavbarState extends State<Navbar> with TickerProviderStateMixin {
         if (status == AnimationStatus.dismissed) {
           isExpanded = false;
         }
-        setState(() {});
       });
 
     opacityBackground = Tween<double>(
@@ -98,7 +97,8 @@ class _NavbarState extends State<Navbar> with TickerProviderStateMixin {
           isExpanded
               ? GestureDetector(
                   onTap: () => _controller.reverse(),
-                  child: Opacity(
+                  child: AnimatedOpacity(
+                    duration: Duration(milliseconds: 700),
                     opacity: opacityBackground.value,
                     child: Container(
                       color: Color(0xAA000000),
@@ -108,24 +108,22 @@ class _NavbarState extends State<Navbar> with TickerProviderStateMixin {
               : SizedBox.shrink(),
           StoreConnector<AppState, bool>(
             converter: (store) => store.state.isLogIn,
-            builder: (context, isLogIn) => SizedBox(
+            builder: (context, isLogIn) => Container(
               width: double.infinity,
               height: containerAnimation.value,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.vertical(
-                    bottom: Radius.circular(30),
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey,
-                      blurRadius: 5.0,
-                    )
-                  ],
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.vertical(
+                  bottom: Radius.circular(30),
                 ),
-                child: isLogIn ? LoginContainer() : NotLoginContainer(),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey,
+                    blurRadius: 5.0,
+                  )
+                ],
               ),
+              child: isLogIn ? LoginContainer() : NotLoginContainer(),
             ),
           ),
           GestureDetector(

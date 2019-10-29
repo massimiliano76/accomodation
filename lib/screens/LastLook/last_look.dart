@@ -71,7 +71,7 @@ class LastLook extends StatelessWidget {
                           return MapEntry(
                             index,
                             FadeInWithTranslate(
-                              delay: 250 - index * 90,
+                              delay: 450 - index * 70,
                               isX: true,
                               translateXStart: 400.0 - minusNumber,
                               translateXEnd: 0.0,
