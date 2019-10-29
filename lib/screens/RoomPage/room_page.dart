@@ -1,6 +1,7 @@
 import 'package:easyhome/components/Navbar/navbar.dart';
 import 'package:easyhome/components/footer.dart';
 import 'package:easyhome/screens/RoomPage/components/single_room.dart';
+import 'package:easyhome/services/animations.dart';
 import 'package:easyhome/services/size_config.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,6 @@ class RoomPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: Stack(
-          fit: StackFit.expand,
           children: <Widget>[
             Padding(
               padding: EdgeInsets.only(top: SizeConfig.horizontal * 15),
@@ -20,13 +20,18 @@ class RoomPage extends StatelessWidget {
                   padding: EdgeInsets.all(8.0),
                   child: Column(
                     children: <Widget>[
-                      SingleRoom(
-                        heroTag: '1',
-                        isBuying: false,
+                      FadeInWithScale(
+                        child: SingleRoom(
+                          heroTag: '1',
+                          isBuying: false,
+                        ),
                       ),
-                      SingleRoom(
-                        heroTag: '2',
-                        isBuying: false,
+                      FadeInWithScale(
+                        delay: 200,
+                        child: SingleRoom(
+                          heroTag: '2',
+                          isBuying: false,
+                        ),
                       ),
                       Padding(
                         padding: EdgeInsets.only(

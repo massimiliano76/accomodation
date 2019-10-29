@@ -3,7 +3,8 @@ import 'package:easyhome/components/Navbar/navbar.dart';
 import 'package:easyhome/components/footer.dart';
 import 'package:easyhome/components/forward_button.dart';
 import 'package:easyhome/components/payments_card.dart';
-import 'package:easyhome/screens/PayPage/pay_page.dart';
+import 'package:easyhome/screens/ThanksPage/thanks_page.dart';
+import 'package:easyhome/services/animations.dart';
 import 'package:easyhome/services/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -41,7 +42,8 @@ class LastPass extends StatelessWidget {
                         Navigator.push(
                           context,
                           PageTransition(
-                              child: PayPage(), type: PageTransitionType.fade),
+                              child: ThanksPage(),
+                              type: PageTransitionType.fade),
                         );
                       },
                     ),
@@ -53,8 +55,10 @@ class LastPass extends StatelessWidget {
               margin: EdgeInsets.only(top: SizeConfig.horizontal * 32),
               child: ListView(
                 children: <Widget>[
-                  PaymentsCard(
-                    title: "Ultimo passo",
+                  FadeInWithScale(
+                    child: PaymentsCard(
+                      title: "Ultimo passo",
+                    ),
                   ),
                   SizedBox(
                     height: SizeConfig.horizontal * 10,
@@ -66,23 +70,35 @@ class LastPass extends StatelessWidget {
                             horizontal: SizeConfig.horizontal * 13),
                         child: Column(
                           children: <Widget>[
-                            Text(
-                              'Firma il contratto',
-                              style: TextStyle(
-                                color: Theme.of(context).accentColor,
-                                fontSize: SizeConfig.horizontal * 4,
+                            FadeInWithTranslate(
+                              isX: true,
+                              delay: 500,
+                              translateXStart: 140,
+                              translateXEnd: 0,
+                              child: Text(
+                                'Firma il contratto',
+                                style: TextStyle(
+                                  color: Theme.of(context).accentColor,
+                                  fontSize: SizeConfig.horizontal * 4,
+                                ),
                               ),
                             ),
                             SizedBox(
                               height: SizeConfig.horizontal * 3,
                             ),
-                            Text(
-                              'Scarica e leggi il contratto in PDF che abbiamo creato per te.\nSuccessivamente firmalo nei campi designati e ricaricalo qui cliccando sul tasto qua sotto.\nLa tua pratica verrà processata dai nostri operatori e riceverai una email di conferma entro 24h.',
-                              style: TextStyle(
-                                color: Color(0xFFAAAAAA),
-                                fontSize: SizeConfig.horizontal * 2.7,
+                            FadeInWithTranslate(
+                              isX: true,
+                              delay: 500,
+                              translateXStart: -140,
+                              translateXEnd: 0,
+                              child: Text(
+                                'Scarica e leggi il contratto in PDF che abbiamo creato per te.\nSuccessivamente firmalo nei campi designati e ricaricalo qui cliccando sul tasto qua sotto.\nLa tua pratica verrà processata dai nostri operatori e riceverai una email di conferma entro 24h.',
+                                style: TextStyle(
+                                  color: Color(0xFFAAAAAA),
+                                  fontSize: SizeConfig.horizontal * 2.7,
+                                ),
+                                textAlign: TextAlign.center,
                               ),
-                              textAlign: TextAlign.center,
                             ),
                           ],
                         ),
@@ -91,9 +107,13 @@ class LastPass extends StatelessWidget {
                         height: SizeConfig.horizontal * 10,
                       ),
                       //TODO: make this image with a transparent image
-                      CachedNetworkImage(
+                      FadeIn(
+                        delay: 700,
+                        child: CachedNetworkImage(
                           height: SizeConfig.horizontal * 27,
-                          imageUrl: 'https://i.ibb.co/Z1hhW5W/1desc2.png')
+                          imageUrl: 'https://i.ibb.co/Z1hhW5W/1desc2.png',
+                        ),
+                      )
                     ],
                   ),
                   SizedBox(
@@ -101,19 +121,22 @@ class LastPass extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        PDFButton(
-                          title: 'Scarica PDF',
-                          icon: Icons.file_download,
-                        ),
-                        SizedBox(width: SizeConfig.horizontal * 8),
-                        PDFButton(
-                          title: 'Carica PDF',
-                          icon: Icons.file_upload,
-                        ),
-                      ],
+                    child: FadeIn(
+                      delay: 800,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          PDFButton(
+                            title: 'Scarica PDF',
+                            icon: Icons.file_download,
+                          ),
+                          SizedBox(width: SizeConfig.horizontal * 8),
+                          PDFButton(
+                            title: 'Carica PDF',
+                            icon: Icons.file_upload,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   Padding(

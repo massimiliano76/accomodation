@@ -30,6 +30,14 @@ class Data {
     '700€ +',
   ];
 
+  static List<String> expandableLabel = [
+    "Descrizione dell'appartamento",
+    "Descrizione della zona",
+    "Regole dell'appartamento",
+    "Mezzi di trasporto",
+    "Prezzo e disponibilità",
+  ];
+
   static final List preference = ['Convivere', 'Stare da solo'];
 
   static final Map<int, dynamic> pages = {
