@@ -38,6 +38,13 @@ class Data {
     "Prezzo e disponibilità",
   ];
 
+  static List<String> featureItemLabel = [
+    "Ricerca personalizzata",
+    "Prenota",
+    "Smart contract",
+    "Check in"
+  ];
+
   static final List preference = ['Convivere', 'Stare da solo'];
 
   static final Map<int, dynamic> pages = {

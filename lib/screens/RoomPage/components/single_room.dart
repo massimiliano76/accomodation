@@ -23,18 +23,17 @@ class SingleRoom extends StatelessWidget {
     return StatefulBuilder(
       builder: (BuildContext context, StateSetter setState) => GestureDetector(
         onTap: () {
-          !isBuying
-              ? Navigator.push(
-                  context,
-                  PageTransition(
-                    type: PageTransitionType.fade,
-                    child: DetailRoom(
-                      heroTag: heroTag,
-                    ),
-                  ),
-                )
-              // ignore: unnecessary_statements
-              : null;
+          if (!isBuying) {
+            Navigator.push(
+              context,
+              PageTransition(
+                type: PageTransitionType.fade,
+                child: DetailRoom(
+                  heroTag: heroTag,
+                ),
+              ),
+            );
+          }
         },
         child: Stack(
           overflow: Overflow.visible,
@@ -91,7 +90,6 @@ class SingleRoom extends StatelessWidget {
                             ),
                             child: SingleChildScrollView(
                               child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Padding(
                                     padding:
@@ -122,7 +120,8 @@ class SingleRoom extends StatelessWidget {
                                                         SizeConfig.horizontal *
                                                             5,
                                                   ),
-                                                ))
+                                                ),
+                                              )
                                             : SizedBox.shrink(),
                                       ],
                                     ),
@@ -155,7 +154,7 @@ class SingleRoom extends StatelessWidget {
                                                             5,
                                                   ),
                                                 ),
-                                              )
+                                              ),
                                       ],
                                     ),
                                   ),
@@ -191,7 +190,6 @@ class SingleRoom extends StatelessWidget {
                   } else {
                     loginDialog(context, "favorite");
                   }
-                  return store.state.isLogIn;
                 },
                 builder: (context, favorite) => GestureDetector(
                   onTap: favorite,
@@ -199,14 +197,15 @@ class SingleRoom extends StatelessWidget {
                     tag: "$heroTag avatar",
                     child: Container(
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30.0),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey,
-                              blurRadius: 5.0,
-                              offset: Offset(2, 5),
-                            )
-                          ]),
+                        borderRadius: BorderRadius.circular(30.0),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey,
+                            blurRadius: 5.0,
+                            offset: Offset(2, 5),
+                          )
+                        ],
+                      ),
                       child: CircleAvatar(
                         radius: SizeConfig.horizontal * 7,
                         backgroundColor: Colors.white,

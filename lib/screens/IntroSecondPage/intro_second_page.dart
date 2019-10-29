@@ -26,6 +26,7 @@ class IntroSecondPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         FadeInWithTranslate(
+                          delay: 250,
                           isX: true,
                           translateXStart: 140.0,
                           translateXEnd: 0,
@@ -43,6 +44,7 @@ class IntroSecondPage extends StatelessWidget {
                           height: 10,
                         ),
                         FadeInWithTranslate(
+                          delay: 400,
                           isX: true,
                           translateXStart: -140.0,
                           translateXEnd: 0,

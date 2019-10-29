@@ -42,8 +42,9 @@ class LastPass extends StatelessWidget {
                         Navigator.push(
                           context,
                           PageTransition(
-                              child: ThanksPage(),
-                              type: PageTransitionType.fade),
+                            child: ThanksPage(),
+                            type: PageTransitionType.fade,
+                          ),
                         );
                       },
                     ),
@@ -56,6 +57,7 @@ class LastPass extends StatelessWidget {
               child: ListView(
                 children: <Widget>[
                   FadeInWithScale(
+                    delay: 100,
                     child: PaymentsCard(
                       title: "Ultimo passo",
                     ),
@@ -88,7 +90,7 @@ class LastPass extends StatelessWidget {
                             ),
                             FadeInWithTranslate(
                               isX: true,
-                              delay: 500,
+                              delay: 700,
                               translateXStart: -140,
                               translateXEnd: 0,
                               child: Text(
@@ -108,7 +110,7 @@ class LastPass extends StatelessWidget {
                       ),
                       //TODO: make this image with a transparent image
                       FadeIn(
-                        delay: 700,
+                        delay: 900,
                         child: CachedNetworkImage(
                           height: SizeConfig.horizontal * 27,
                           imageUrl: 'https://i.ibb.co/Z1hhW5W/1desc2.png',
